@@ -18,6 +18,8 @@ namespace GooglePlusData
             modelBuilder.Entity<User>().Property(u => u.GoogleId).HasColumnName("google_id");
             modelBuilder.Entity<User>().Property(u => u.FirstName).HasColumnName("first_name");
             modelBuilder.Entity<User>().Property(u => u.LastName).HasColumnName("last_name");
+            modelBuilder.Entity<User>().Property(u => u.Username).HasColumnName("username");
+            modelBuilder.Entity<User>().Property(u => u.Password).HasColumnName("password");
         }
     }
 }

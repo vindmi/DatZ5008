@@ -55,6 +55,11 @@
   <ItemGroup>
     <Compile Include="GooglePlusPlus.cs" />
     <Compile Include="Managers\UserManager.cs" />
+    <Compile Include="Migrations\201209171819262_InitialCreate.cs" />
+    <Compile Include="Migrations\201209171819262_InitialCreate.Designer.cs">
+      <DependentUpon>201209171819262_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,13 +67,14 @@
   <ItemGroup>
     <Content Include="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\GooglePlusPlus.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <EmbeddedResource Include="Migrations\201209171819262_InitialCreate.resx">
+      <DependentUpon>201209171819262_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
