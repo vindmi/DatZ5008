@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using GooglePlusData.Model;
+using log4net;
 
 namespace GooglePlusData.Managers
 {
@@ -13,7 +11,15 @@ namespace GooglePlusData.Managers
             using (GooglePlusPlus ctx = new GooglePlusPlus())
             {
                 ctx.Users.Add(user);
-                ctx.SaveChanges();
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
         }
     }
