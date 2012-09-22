@@ -1,4 +1,4 @@
-namespace GooglePlusData.Migrations
+namespace GooglePlus.Data.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

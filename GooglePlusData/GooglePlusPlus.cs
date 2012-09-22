@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.Entity;
-using GooglePlusData.Model;
+﻿using System.Data.Entity;
+using GooglePlus.Data.Model;
 
-namespace GooglePlusData
+namespace GooglePlus.Data
 {
-    internal class GooglePlusPlus : DbContext
+    internal class GooglePlus : DbContext
     {
         public DbSet<User> Users { get; set; }
 

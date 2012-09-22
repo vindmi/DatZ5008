@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GooglePlusData;
-using GooglePlusData.Model;
-using GooglePlusData.Managers;
-using log4net;
+﻿using log4net;
+using GooglePlus.Data.Managers;
+using GooglePlus.Data.Model;
 
-namespace MainApplication
+namespace GooglePlus.Main
 {
     class Program
     {

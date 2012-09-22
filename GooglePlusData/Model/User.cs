@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GooglePlusData.Model
+namespace GooglePlus.Data.Model
 {
     public class User
     {
