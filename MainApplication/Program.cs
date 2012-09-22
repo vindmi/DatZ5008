@@ -15,6 +15,7 @@ namespace MainApplication
             var usr = new User();
             usr.FirstName = "a";
             usr.LastName = "b";
+            usr.Username = "ab";
 
             new UserManager().Save(usr);
         }
