@@ -62,12 +62,6 @@
     <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GoolePlusClient\GooglePlus.ApiClient.csproj">
-      <Project>{A364BC56-4A85-4BE4-8974-5124B4CAEE10}</Project>
-      <Name>GooglePlus.ApiClient</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

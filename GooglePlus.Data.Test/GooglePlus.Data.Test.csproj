@@ -61,7 +61,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GooglePlusData\GooglePlus.Data.csproj">
+    <ProjectReference Include="..\GooglePlus.Data\GooglePlus.Data.csproj">
       <Project>{90BB3D40-B80A-4389-A13C-D5335168A8F2}</Project>
       <Name>GooglePlus.Data</Name>
     </ProjectReference>
