@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5EA6D9A9-A0F4-48F4-A2E4-3597C4474D66}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GooglePlus.Build</RootNamespace>
+    <AssemblyName>GooglePlus.Build</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="BuildTargets.xml" />
+    <Content Include="GlobalBuildSettings.xml" />
+    <Content Include="Nant 0.92\extensions\common\2.0\NAnt.MSBuild.dll" />
+    <Content Include="Nant 0.92\extensions\common\2.0\NAnt.MSBuild.xml" />
+    <Content Include="Nant 0.92\extensions\common\4.0\NAnt.MSBuild.dll" />
+    <Content Include="Nant 0.92\extensions\common\4.0\NAnt.MSBuild.xml" />
+    <Content Include="Nant 0.92\lib\common\2.0\nunit-console-runner.dll" />
+    <Content Include="Nant 0.92\lib\common\2.0\nunit-console.exe" />
+    <Content Include="Nant 0.92\lib\common\2.0\nunit.core.dll" />
+    <Content Include="Nant 0.92\lib\common\2.0\nunit.core.interfaces.dll" />
+    <Content Include="Nant 0.92\lib\common\2.0\nunit.framework.dll" />
+    <Content Include="Nant 0.92\lib\common\2.0\nunit.util.dll" />
+    <Content Include="Nant 0.92\lib\common\neutral\ICSharpCode.SharpCvsLib.Console.dll" />
+    <Content Include="Nant 0.92\lib\common\neutral\ICSharpCode.SharpCvsLib.dll" />
+    <Content Include="Nant 0.92\lib\common\neutral\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="Nant 0.92\lib\common\neutral\NDoc.Core.dll" />
+    <Content Include="Nant 0.92\lib\common\neutral\NDoc.Documenter.Msdn.dll" />
+    <Content Include="Nant 0.92\lib\common\neutral\NDoc.ExtendedUI.dll" />
+    <Content Include="Nant 0.92\lib\common\neutral\netDumbster.dll" />
+    <Content Include="Nant 0.92\lib\common\neutral\NUnitCore.dll" />
+    <Content Include="Nant 0.92\log4net.dll" />
+    <Content Include="Nant 0.92\NAnt.CompressionTasks.dll" />
+    <Content Include="Nant 0.92\NAnt.CompressionTasks.xml" />
+    <Content Include="Nant 0.92\NAnt.Core.dll" />
+    <Content Include="Nant 0.92\NAnt.Core.xml" />
+    <Content Include="Nant 0.92\NAnt.DotNetTasks.dll" />
+    <Content Include="Nant 0.92\NAnt.DotNetTasks.xml" />
+    <Content Include="Nant 0.92\NAnt.exe" />
+    <Content Include="Nant 0.92\NAnt.MSNetTasks.dll" />
+    <Content Include="Nant 0.92\NAnt.MSNetTasks.xml" />
+    <Content Include="Nant 0.92\NAnt.NUnit.dll" />
+    <Content Include="Nant 0.92\NAnt.NUnit.xml" />
+    <Content Include="Nant 0.92\NAnt.NUnit1Tasks.dll" />
+    <Content Include="Nant 0.92\NAnt.NUnit1Tasks.xml" />
+    <Content Include="Nant 0.92\NAnt.NUnit2Tasks.dll" />
+    <Content Include="Nant 0.92\NAnt.NUnit2Tasks.xml" />
+    <Content Include="Nant 0.92\NAnt.SourceControlTasks.dll" />
+    <Content Include="Nant 0.92\NAnt.SourceControlTasks.xml" />
+    <Content Include="Nant 0.92\NAnt.VisualCppTasks.dll" />
+    <Content Include="Nant 0.92\NAnt.VisualCppTasks.xml" />
+    <Content Include="Nant 0.92\NAnt.VSNetTasks.dll" />
+    <Content Include="Nant 0.92\NAnt.VSNetTasks.xml" />
+    <Content Include="Nant 0.92\NAnt.Win32Tasks.dll" />
+    <Content Include="Nant 0.92\NAnt.Win32Tasks.xml" />
+    <Content Include="Nant 0.92\NAnt.xml" />
+    <Content Include="Nant 0.92\NDoc.Documenter.NAnt.dll" />
+    <Content Include="Nant 0.92\NDoc.Documenter.NAnt.xml" />
+    <Content Include="Nant 0.92\scvs.exe" />
+    <Content Include="NUnit 2.6\framework\nunit.framework.dll" />
+    <Content Include="NUnit 2.6\framework\nunit.framework.xml" />
+    <Content Include="NUnit 2.6\framework\nunit.mocks.dll" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Circles\failure.jpg" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Circles\ignored.jpg" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Circles\inconclusive.jpg" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Circles\skipped.jpg" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Circles\success.jpg" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Classic\failure.jpg" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Classic\ignored.jpg" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Classic\inconclusive.jpg" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Classic\skipped.jpg" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Classic\success.jpg" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Default\failure.png" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Default\ignored.png" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Default\inconclusive.png" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Default\skipped.png" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Default\success.png" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Visual Studio\failure.png" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Visual Studio\ignored.png" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Visual Studio\inconclusive.png" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Visual Studio\skipped.png" />
+    <Content Include="NUnit 2.6\lib\Images\Tree\Visual Studio\success.png" />
+    <Content Include="NUnit 2.6\lib\nunit-console-runner.dll" />
+    <Content Include="NUnit 2.6\lib\nunit-gui-runner.dll" />
+    <Content Include="NUnit 2.6\lib\nunit.core.dll" />
+    <Content Include="NUnit 2.6\lib\nunit.core.interfaces.dll" />
+    <Content Include="NUnit 2.6\lib\nunit.uiexception.dll" />
+    <Content Include="NUnit 2.6\lib\nunit.uikit.dll" />
+    <Content Include="NUnit 2.6\lib\nunit.util.dll" />
+    <Content Include="NUnit 2.6\nunit-agent-x86.exe" />
+    <Content Include="NUnit 2.6\nunit-agent.exe" />
+    <Content Include="NUnit 2.6\nunit-console-x86.exe" />
+    <Content Include="NUnit 2.6\nunit-console.exe" />
+    <Content Include="NUnit 2.6\nunit-editor.exe" />
+    <Content Include="NUnit 2.6\nunit-x86.exe" />
+    <Content Include="NUnit 2.6\nunit.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DeployAzureApp.ps1" />
+    <None Include="Nant 0.92\lib\common\2.0\nunit-console.exe.config" />
+    <None Include="Nant 0.92\NAnt.exe.config" />
+    <None Include="Nant.build" />
+    <None Include="NUnit 2.6\nunit-agent-x86.exe.config" />
+    <None Include="NUnit 2.6\nunit-agent.exe.config" />
+    <None Include="NUnit 2.6\nunit-console-x86.exe.config" />
+    <None Include="NUnit 2.6\nunit-console.exe.config" />
+    <None Include="NUnit 2.6\nunit-x86.exe.config" />
+    <None Include="NUnit 2.6\nunit.exe.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NUnit 2.6\addins\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
