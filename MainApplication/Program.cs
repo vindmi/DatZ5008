@@ -11,11 +11,11 @@ namespace MainApplication
 {
     class Program
     {
-        private static ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         static void Main(string[] args)
         {
-            Log.Debug("Main START");
+            log.Debug("Main START");
 
             var usr = new User();
             usr.FirstName = "a";
@@ -23,7 +23,7 @@ namespace MainApplication
 
             new UserManager().Save(usr);
 
-            Log.Debug("Main END");
+            log.Debug("Main END");
         }
     }
 }
