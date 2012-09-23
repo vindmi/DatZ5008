@@ -1,6 +1,8 @@
 ﻿using log4net;
 using GooglePlus.Data.Managers;
 using GooglePlus.Data.Model;
+using GooglePlus.Data.Services;
+using System.Configuration;
 
 namespace GooglePlus.Main
 {
@@ -19,6 +21,21 @@ namespace GooglePlus.Main
             new UserManager().Save(usr);
 
             log.Debug("Main END");
+        }
+
+        private void LoadUsersFromGooglePlus()
+        {
+            string apiKey = ConfigurationManager.AppSettings["googlePlusApiKey"];
+            string uri = ConfigurationManager.AppSettings["googlePlusApiGetPeopleUri"];
+
+            var googleService = new GooglePlusService(apiKey);
+            var userIDs = ConfigurationManager.AppSettings["googlePlusUserIDs"];
+            var users = userIDs.Split(',');
+
+            foreach (string u in users)
+            {
+                googleService.GetUserData(u, uri);
+            }
         }
     }
 }
