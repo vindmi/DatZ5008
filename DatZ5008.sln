@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlus.ApiClient", "GoolePlusClient\GooglePlus.ApiClient.csproj", "{A364BC56-4A85-4BE4-8974-5124B4CAEE10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlus.ApiClient", "GooglePlus.Client\GooglePlus.ApiClient.csproj", "{A364BC56-4A85-4BE4-8974-5124B4CAEE10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlus.Data", "GooglePlusData\GooglePlus.Data.csproj", "{90BB3D40-B80A-4389-A13C-D5335168A8F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlus.Data", "GooglePlus.Data\GooglePlus.Data.csproj", "{90BB3D40-B80A-4389-A13C-D5335168A8F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlus.Main", "MainApplication\GooglePlus.Main.csproj", "{AD9478F1-E726-43D1-BB93-3E7621B262AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlus.Main", "GooglePlus.Main\GooglePlus.Main.csproj", "{AD9478F1-E726-43D1-BB93-3E7621B262AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlus.Data.Test", "GooglePlus.Data.Test\GooglePlus.Data.Test.csproj", "{C8329771-EFFB-42CD-83F9-F6C0874C393B}"
 EndProject
