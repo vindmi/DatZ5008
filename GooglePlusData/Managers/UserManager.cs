@@ -1,8 +1,8 @@
 ﻿using System;
-using GooglePlusData.Model;
 using log4net;
+using GooglePlus.Data.Model;
 
-namespace GooglePlusData.Managers
+namespace GooglePlus.Data.Managers
 {
     public class UserManager
     {
@@ -12,7 +12,7 @@ namespace GooglePlusData.Managers
         {
             log.Info("Saving user");
             
-            using (GooglePlusPlus ctx = new GooglePlusPlus())
+            using (GooglePlus ctx = new GooglePlus())
             {
                 ctx.Users.Add(user);
 

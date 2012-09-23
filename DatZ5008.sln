@@ -1,13 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoolePlusClient", "GoolePlusClient\GoolePlusClient.csproj", "{A364BC56-4A85-4BE4-8974-5124B4CAEE10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlus.ApiClient", "GoolePlusClient\GooglePlus.ApiClient.csproj", "{A364BC56-4A85-4BE4-8974-5124B4CAEE10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlusData", "GooglePlusData\GooglePlusData.csproj", "{90BB3D40-B80A-4389-A13C-D5335168A8F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlus.Data", "GooglePlusData\GooglePlus.Data.csproj", "{90BB3D40-B80A-4389-A13C-D5335168A8F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainApplication", "MainApplication\MainApplication.csproj", "{AD9478F1-E726-43D1-BB93-3E7621B262AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlus.Main", "MainApplication\GooglePlus.Main.csproj", "{AD9478F1-E726-43D1-BB93-3E7621B262AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlus.Data.Test", "GooglePlus.Data.Test\GooglePlus.Data.Test.csproj", "{C8329771-EFFB-42CD-83F9-F6C0874C393B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A6A0C9FB-0B62-4C7C-9038-69D03437265A}"
+	ProjectSection(SolutionItems) = preProject
+		DatZ5008.vsmdi = DatZ5008.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlus.ApiClient.Test", "GooglePlus.ApiClient.Test\GooglePlus.ApiClient.Test.csproj", "{354D8816-CB8F-4D31-8BE5-DD4075AB9169}"
 EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = DatZ5008.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -47,6 +61,26 @@ Global
 		{AD9478F1-E726-43D1-BB93-3E7621B262AC}.Release|Mixed Platforms.Build.0 = Release|x86
 		{AD9478F1-E726-43D1-BB93-3E7621B262AC}.Release|x86.ActiveCfg = Release|x86
 		{AD9478F1-E726-43D1-BB93-3E7621B262AC}.Release|x86.Build.0 = Release|x86
+		{C8329771-EFFB-42CD-83F9-F6C0874C393B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8329771-EFFB-42CD-83F9-F6C0874C393B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8329771-EFFB-42CD-83F9-F6C0874C393B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C8329771-EFFB-42CD-83F9-F6C0874C393B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C8329771-EFFB-42CD-83F9-F6C0874C393B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C8329771-EFFB-42CD-83F9-F6C0874C393B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8329771-EFFB-42CD-83F9-F6C0874C393B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8329771-EFFB-42CD-83F9-F6C0874C393B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C8329771-EFFB-42CD-83F9-F6C0874C393B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C8329771-EFFB-42CD-83F9-F6C0874C393B}.Release|x86.ActiveCfg = Release|Any CPU
+		{354D8816-CB8F-4D31-8BE5-DD4075AB9169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{354D8816-CB8F-4D31-8BE5-DD4075AB9169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{354D8816-CB8F-4D31-8BE5-DD4075AB9169}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{354D8816-CB8F-4D31-8BE5-DD4075AB9169}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{354D8816-CB8F-4D31-8BE5-DD4075AB9169}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{354D8816-CB8F-4D31-8BE5-DD4075AB9169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{354D8816-CB8F-4D31-8BE5-DD4075AB9169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{354D8816-CB8F-4D31-8BE5-DD4075AB9169}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{354D8816-CB8F-4D31-8BE5-DD4075AB9169}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{354D8816-CB8F-4D31-8BE5-DD4075AB9169}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

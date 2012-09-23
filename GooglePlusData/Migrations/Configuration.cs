@@ -1,18 +1,18 @@
-namespace GooglePlusData.Migrations
+namespace GooglePlus.Data.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<GooglePlusData.GooglePlusPlus>
+    internal sealed class Configuration : DbMigrationsConfiguration<GooglePlus>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(GooglePlusData.GooglePlusPlus context)
+        protected override void Seed(GooglePlus context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -1,5 +1,8 @@
-﻿public enum Gender
+﻿namespace GooglePlus.Data.Model
 {
-    Male = 1,
-    Female = 2
+    public enum Gender
+    {
+        Male = 1,
+        Female = 2
+    }
 }
