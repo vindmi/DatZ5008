@@ -1,2 +1,6 @@
-/MainApplication/bin
+bin
+obj
+Debug
+/MainApplication/MainApplication.csproj.user
 /DatZ5008.suo
+/DatZ5008.vsmdi
