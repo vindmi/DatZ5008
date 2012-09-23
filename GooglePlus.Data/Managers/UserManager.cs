@@ -10,7 +10,7 @@ namespace GooglePlus.Data.Managers
         
         public void Save(User user)
         {
-            log.Info("Saving user");
+            log.Info("Saving user: " + user.GoogleId);
             
             using (GooglePlus ctx = new GooglePlus())
             {

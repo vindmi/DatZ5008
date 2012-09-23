@@ -3,6 +3,7 @@ using GooglePlus.Data.Managers;
 using GooglePlus.Data.Model;
 using GooglePlus.Data.Services;
 using System.Configuration;
+using System;
 
 namespace GooglePlus.Main
 {
@@ -13,29 +14,36 @@ namespace GooglePlus.Main
         static void Main(string[] args)
         {
             log.Debug("Main START");
-
-            var usr = new User();
-            usr.FirstName = "a";
-            usr.LastName = "b";
-
-            new UserManager().Save(usr);
+            
+            LoadUsersFromGooglePlus();
 
             log.Debug("Main END");
         }
 
-        private void LoadUsersFromGooglePlus()
+        private static void LoadUsersFromGooglePlus()
         {
+            log.Debug("Load from GooglePlus started");
+
             string apiKey = ConfigurationManager.AppSettings["googlePlusApiKey"];
             string uri = ConfigurationManager.AppSettings["googlePlusApiGetPeopleUri"];
-
-            var googleService = new GooglePlusService(apiKey);
             var userIDs = ConfigurationManager.AppSettings["googlePlusUserIDs"];
+            var googleService = new GooglePlusService(apiKey);
             var users = userIDs.Split(',');
 
             foreach (string u in users)
             {
-                googleService.GetUserData(u, uri);
+                try
+                {
+                    var user = googleService.GetUserData(u, uri);
+                    new UserManager().Save(user);
+                }
+                catch (Exception ex)
+                {
+                    //log.Error(ex.Message, ex);
+                }
             }
-        }
+
+            log.Debug("Load from GooglePlus finished");
+        }      
     }
 }
