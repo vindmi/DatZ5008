@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Configuration;
-using GooglePlus.Data.Model;
+﻿using GooglePlus.Data.Model;
+using GooglePlus.ApiClient.Classes;
 using System.Net;
 using System.IO;
 using System.Runtime.Serialization.Json;
-using GooglePlus.Data.Classes;
+using System.Text;
 
-namespace GooglePlus.Data.Services
+namespace GooglePlus.ApiClient
 {
-    public class GooglePlusService
+    public class GooglePlusApiClient
     {
         private static string googlePlusApiKey;
         private static string googlePlusApiGetPeopleUri;
 
-        public GooglePlusService(string apikey)
+        public GooglePlusApiClient(string apikey)
         {
             googlePlusApiKey = apikey;
         }

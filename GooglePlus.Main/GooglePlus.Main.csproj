@@ -69,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GooglePlus.ApiClient\GooglePlus.ApiClient.csproj">
+      <Project>{A364BC56-4A85-4BE4-8974-5124B4CAEE10}</Project>
+      <Name>GooglePlus.ApiClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GooglePlus.Data\GooglePlus.Data.csproj">
       <Project>{90BB3D40-B80A-4389-A13C-D5335168A8F2}</Project>
       <Name>GooglePlus.Data</Name>

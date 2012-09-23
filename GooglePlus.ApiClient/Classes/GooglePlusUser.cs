@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GooglePlus.Data.Classes
+namespace GooglePlus.ApiClient.Classes
 {
     public class GooglePlusUser
     {
