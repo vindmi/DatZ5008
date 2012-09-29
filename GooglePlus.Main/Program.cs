@@ -4,6 +4,7 @@ using GooglePlus.Data.Model;
 using GooglePlus.ApiClient;
 using System.Configuration;
 using System;
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 
 namespace GooglePlus.Main
 {
