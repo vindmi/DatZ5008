@@ -3,10 +3,10 @@
 <project name="GlobalBuildSettings">
 	
     <!--Location where you want source built in your local workspace -->
-	<property name="local.buildspace" value="c:\dev\builds"/>
+	<property name="local.buildspace" value="..\..\"/>
 
 	<!--Location where you edit code during development -->
-	<property name="local.workspace" value="c:\dev\work"/>
+	<property name="local.workspace" value="..\..\"/>
 	
 	<!--Location where you want source packaged up to be released -->
 	<property name="local.releasespace" value="c:\dev\releases"/>
@@ -15,7 +15,7 @@
 	<property name="msbuild4.exe" value="C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe"/>
 	
 	<!--Location for Azure packager cspack-->
-	<property name="cspack.exe" value="C:\Program Files\Microsoft SDKs\Windows Azure\.NET SDK\2012-06\bin\cspack.exe"/>
+	<!--<property name="cspack.exe" value="C:\Program Files\Microsoft SDKs\Windows Azure\.NET SDK\2012-06\bin\cspack.exe"/>-->
 	
 	<!--Location for Powershell-->
 	<property name="powershell.exe" value="C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe" />

@@ -9,7 +9,7 @@ namespace GooglePlus.Main
 {
     class Program
     {
-        private static ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static ILog log = log4net.LogManager.GetLogger(typeof(Program));
 
         static void Main(string[] args)
         {
@@ -37,7 +37,7 @@ namespace GooglePlus.Main
                     var user = googleService.GetUserData(u, uri);
                     new UserManager().Save(user);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //log.Error(ex.Message, ex);
                 }

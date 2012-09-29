@@ -6,7 +6,7 @@ namespace GooglePlus.Data.Managers
 {
     public class UserManager
     {
-        private static ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static ILog log = log4net.LogManager.GetLogger(typeof(UserManager));
         
         public void Save(User user)
         {
