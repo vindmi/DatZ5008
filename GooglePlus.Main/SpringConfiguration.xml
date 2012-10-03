@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
+  
+  <object id="IJsonServiceClient" type="GooglePlus.ApiClient.Providers.JsonServiceClient, GooglePlus.ApiClient"/>
+
+  <object id="BaseGooglePlusProvider" abstract="true">
+    <property name="ApiKey" value="AIzaSyD7EXrp8GOD2dRhvXKzDTCLzZccMHKoIok" />
+    <property name="JsonDataProvider" ref="IJsonServiceClient" />
+  </object>
+  
+  <object id="IGooglePlusPeopleProvider" parent="BaseGooglePlusProvider" type="GooglePlus.ApiClient.Providers.GooglePeopleProvider, GooglePlus.ApiClient">
+    <property name="Uri" value="https://www.googleapis.com/plus/v1/people"/>
+  </object>
+
+  <object id="IUserPersister" type="GooglePlus.Data.Persisters.UserPersister, GooglePlus.Data"/>
+
+  <object id="IUserManager" type="GooglePlus.Data.Managers.UserManager, GooglePlus.Data">
+    <constructor-arg name="userPersister" ref="IUserPersister"/>
+  </object>
+</objects>

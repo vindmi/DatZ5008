@@ -1,15 +1,20 @@
 ﻿using log4net;
 using GooglePlus.Data.Managers;
 using GooglePlus.Data.Model;
-using GooglePlus.ApiClient;
 using System.Configuration;
 using System;
+using GooglePlus.ApiClient.Classes;
+using Spring.Context;
+using Spring.Context.Support;
+using GooglePlus.ApiClient.Contract;
 
 namespace GooglePlus.Main
 {
     class Program
     {
         private static ILog log = log4net.LogManager.GetLogger(typeof(Program));
+
+        static IApplicationContext ctx = ContextRegistry.GetContext();
 
         static void Main(string[] args)
         {
@@ -24,26 +29,36 @@ namespace GooglePlus.Main
         {
             log.Debug("Load from GooglePlus started");
 
-            string apiKey = ConfigurationManager.AppSettings["googlePlusApiKey"];
-            string uri = ConfigurationManager.AppSettings["googlePlusApiGetPeopleUri"];
             var userIDs = ConfigurationManager.AppSettings["googlePlusUserIDs"];
-            var googleService = new GooglePlusApiClient(apiKey);
+
+            var googleService = (IGooglePlusPeopleProvider)ctx.GetObject("IGooglePlusPeopleProvider");
+
             var users = userIDs.Split(',');
 
-            foreach (string u in users)
+            UserManager userManager = (UserManager)ctx.GetObject("IUserManager");
+
+            UserConverter userConverter = new UserConverter();
+
+            foreach (string userId in users)
             {
                 try
                 {
-                    var user = googleService.GetUserData(u, uri);
-                    new UserManager().Save(user);
+                    var googleUser = googleService.GetProfile(userId);
+
+                    User user = userConverter.Convert(googleUser);
+
+                    userManager.Save(user);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //log.Error(ex.Message, ex);
+                    log.Error(ex.Message, ex);
                 }
             }
 
             log.Debug("Load from GooglePlus finished");
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }      
     }
 }

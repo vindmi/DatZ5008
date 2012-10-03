@@ -57,13 +57,14 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Contract\IObjectPersister.cs" />
+    <Compile Include="Persisters\UserPersister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Include="App.config">
       <SubType>Designer</SubType>
-    </Content>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
