@@ -3,11 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
   
-  <object id="IJsonServiceClient" type="GooglePlus.ApiClient.Providers.JsonServiceClient, GooglePlus.ApiClient"/>
+  <object id="IRestServiceClient" type="GooglePlus.ApiClient.Providers.JsonServiceClient, GooglePlus.ApiClient"/>
 
   <object id="BaseGooglePlusProvider" abstract="true">
     <property name="ApiKey" value="AIzaSyD7EXrp8GOD2dRhvXKzDTCLzZccMHKoIok" />
-    <property name="JsonDataProvider" ref="IJsonServiceClient" />
+    <property name="JsonDataProvider" ref="IRestServiceClient" />
   </object>
   
   <object id="IGooglePlusPeopleProvider" parent="BaseGooglePlusProvider" type="GooglePlus.ApiClient.Providers.GooglePeopleProvider, GooglePlus.ApiClient">

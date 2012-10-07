@@ -21,5 +21,5 @@
 	<property name="powershell.exe" value="C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe" />
 	
 	<!--Location for Nunit Console-->
-	<property name="nunit-console.exe" value="C:\dev\tools\NUnit 2.6\bin\nunit-console.exe" />
+	<property name="nunit-console.exe" value="..\NUnit 2.6\nunit-console.exe" />
 </project>

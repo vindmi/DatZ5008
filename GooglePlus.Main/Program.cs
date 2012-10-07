@@ -7,6 +7,7 @@ using GooglePlus.ApiClient.Classes;
 using Spring.Context;
 using Spring.Context.Support;
 using GooglePlus.ApiClient.Contract;
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 
 namespace GooglePlus.Main
 {

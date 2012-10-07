@@ -5,7 +5,7 @@ namespace GooglePlus.ApiClient.Providers
 {
     public abstract class AbstractGoogleDataProvider
     {
-        public IJsonServiceClient JsonDataProvider { protected get; set; }
+        public IRestServiceClient JsonDataProvider { protected get; set; }
 
         public string ApiKey
         {
