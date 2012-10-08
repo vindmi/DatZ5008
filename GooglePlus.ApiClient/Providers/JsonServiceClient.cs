@@ -6,7 +6,7 @@ using GooglePlus.ApiClient.Contract;
 
 namespace GooglePlus.ApiClient.Providers
 {
-    public class JsonServiceClient : IJsonServiceClient
+    public class JsonServiceClient : IRestServiceClient
     {
         public T GetData<T>(string uri)
         {

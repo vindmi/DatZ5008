@@ -10,13 +10,13 @@ namespace GooglePlus.ApiClient.Test.GooglePeopleProvider
     [TestFixture]
     public class GetProfile
     {
-        Mock<IJsonServiceClient> jsonClient;
+        Mock<IRestServiceClient> jsonClient;
         PeopleProvider target;
 
         [SetUp]
         public void Initialize()
         {
-            jsonClient = new Mock<IJsonServiceClient>();
+            jsonClient = new Mock<IRestServiceClient>();
 
             target = new PeopleProvider
             {
@@ -44,6 +44,38 @@ namespace GooglePlus.ApiClient.Test.GooglePeopleProvider
             target.GetProfile("1");
 
             jsonClient.Verify(c => c.GetData<GooglePlusUser>(It.IsAny<string>()), Times.Once());
+        }
+
+        [Test]
+        public void Should_pass_user_id_as_key_parameter()
+        {
+            target.GetProfile("1");
+
+            Predicate<string> paramChecker = p => p != null && p.Contains("/1?key=");
+
+            jsonClient.Verify(c => c.GetData<GooglePlusUser>(It.Is<string>(p => paramChecker(p))));
+        }
+
+        [Test]
+        public void Should_return_object_from_service()
+        {
+            GooglePlusUser serviceResult = new GooglePlusUser();
+
+            jsonClient.Setup(c => c.GetData<GooglePlusUser>(It.IsAny<string>())).Returns(serviceResult);
+
+            GooglePlusUser providerResult = target.GetProfile("1");
+
+            Assert.AreSame(serviceResult, providerResult);
+        }
+
+        [Test]
+        public void Should_return_null_if_service_returns_null()
+        {
+            jsonClient.Setup(c => c.GetData<GooglePlusUser>(It.IsAny<string>())).Returns(() => null);
+
+            GooglePlusUser providerResult = target.GetProfile("1");
+
+            Assert.IsNull(providerResult);
         }
     }
 }

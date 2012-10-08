@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GooglePlus.ApiClient.Contract
 {
-    public interface IJsonServiceClient
+    public interface IRestServiceClient
     {
         T GetData<T>(string uri);
     }

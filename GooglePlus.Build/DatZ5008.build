@@ -28,7 +28,7 @@
 	<property name="solution.src.dir" value="" />
 
 	<!--Nunit Test Settings-->
-	<property name="run.nunit.tests" value="false" />
+	<property name="run.nunit.tests" value="true" />
 	<!--The names of the projects containing your Nunit tests, comma seperated with no spaces-->
 	<property name="test.project.names" value="GooglePlus.Data.Test,GooglePlus.ApiClient.Test" />
 	
