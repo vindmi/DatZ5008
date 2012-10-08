@@ -7,6 +7,7 @@ using GooglePlus.ApiClient.Classes;
 using Spring.Context;
 using Spring.Context.Support;
 using GooglePlus.ApiClient.Contract;
+using GooglePlus.Main.Contract;
 
 namespace GooglePlus.Main
 {
@@ -29,24 +30,23 @@ namespace GooglePlus.Main
         {
             log.Debug("Load from GooglePlus started");
 
-            var userIDs = ConfigurationManager.AppSettings["googlePlusUserIDs"];
-
             var googleService = (IGooglePlusPeopleProvider)ctx.GetObject("IGooglePlusPeopleProvider");
-
-            var users = userIDs.Split(',');
-
             UserManager userManager = (UserManager)ctx.GetObject("IUserManager");
+            
+            //get initial user ids
+            var userIdStore = (IUserIdStore)ctx.GetObject("IUserIdStore");
+            var users = userIdStore.UserIds.Split(',');
 
             UserConverter userConverter = new UserConverter();
-
             foreach (string userId in users)
             {
                 try
                 {
+                    //get user data from google
                     var googleUser = googleService.GetProfile(userId);
-
+                    //convert user
                     User user = userConverter.Convert(googleUser);
-
+                    //save user on database
                     userManager.Save(user);
                 }
                 catch (Exception ex)

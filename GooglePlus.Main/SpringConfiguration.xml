@@ -19,4 +19,8 @@
   <object id="IUserManager" type="GooglePlus.Data.Managers.UserManager, GooglePlus.Data">
     <constructor-arg name="userPersister" ref="IUserPersister"/>
   </object>
+
+  <object id="IUserIdStore" type="GooglePlus.Main.UserIdStore, GooglePlus.Main">
+    <property name="UserIds" value="105278277919449957639,107192656717644038166,105997369825882388334" />
+  </object>
 </objects>
