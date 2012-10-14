@@ -9,11 +9,11 @@ namespace GooglePlus.Data.Managers
     {
         private static ILog log = log4net.LogManager.GetLogger(typeof(UserManager));
 
-        private IObjectPersister<User, long> userPersister;
+        private IGoogleDataAdapter dataAdapter;
 
-        public UserManager(IObjectPersister<User, long> userPersister)
+        public UserManager(IGoogleDataAdapter dataAdapter)
         {
-            this.userPersister = userPersister;
+            this.dataAdapter = dataAdapter;
         }
         
         public void Save(User user)
@@ -24,7 +24,7 @@ namespace GooglePlus.Data.Managers
             
             try
             {
-                userPersister.Write(user);
+                dataAdapter.SaveUser(user);
             }
             catch (Exception ex)
             {

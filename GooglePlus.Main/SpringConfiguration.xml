@@ -18,10 +18,10 @@
     <property name="Uri" value="https://www.googleapis.com/plus/v1/people"/>
   </object>
 
-  <object id="IUserPersister" type="GooglePlus.Data.Persisters.UserPersister, GooglePlus.Data"/>
+  <object id="IGoogleDataAdapter" type="GooglePlus.Data.GoogleDataAdapter, GooglePlus.Data"/>
 
   <object id="IUserManager" type="GooglePlus.Data.Managers.UserManager, GooglePlus.Data">
-    <constructor-arg name="userPersister" ref="IUserPersister"/>
+    <constructor-arg name="dataAdapter" ref="IGoogleDataAdapter"/>
   </object>
 
   <object id="IUserIdStore" type="GooglePlus.Main.UserIdStore, GooglePlus.Main">
