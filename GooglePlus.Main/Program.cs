@@ -90,11 +90,14 @@ namespace GooglePlus.Main
                             break;
                     }
                     //look for photos
-                    foreach (var attachment in item.@object.attachments)
+                    if (item.@object.attachments != null)
                     {
-                        if (attachment.objectType.Equals("photo"))
+                        foreach (var attachment in item.@object.attachments)
                         {
-                            //var photo = actConverter.ConvertPhoto(attachment);
+                            if (attachment.objectType.Equals("photo"))
+                            {
+                                //var photo = actConverter.ConvertPhoto(attachment);
+                            }
                         }
                     }
                 }
