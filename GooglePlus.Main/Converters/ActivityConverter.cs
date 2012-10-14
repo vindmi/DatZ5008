@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using GooglePlus.ApiClient.Classes;
 using GooglePlus.Data.Model;
 
@@ -25,36 +22,36 @@ namespace GooglePlus.Main.Converters
         public Photo ConvertPhoto(GooglePlusAttachment attachment, Activity activity)
         {            
             return new Photo
-                {
-                    googleId = attachment.Id,
-                    Created = activity.Created,
-                    Author = activity.Author,
-                    Src = attachment.FullImage.Url,
-                    Comment = attachment.Content,
-                    Url = attachment.Url
-                };
+            {
+                googleId = attachment.Id,
+                Created = activity.Created,
+                Author = activity.Author,
+                Src = attachment.FullImage.Url,
+                Comment = attachment.Content,
+                Url = attachment.Url
+            };
         }
 
         public Share ConvertShare(GooglePlusObject gObject, Activity activity)
         {
-            return new Share()
-                {
-                    googleId = activity.googleId,
-                    Created = activity.Created,
-                    Author = activity.Author,
-                    Comment = gObject.Content
-                };
+            return new Share
+            {
+                googleId = activity.googleId,
+                Created = activity.Created,
+                Author = activity.Author,
+                Comment = gObject.Content
+            };
         }
 
         public Post ConvertPost(GooglePlusObject gObject, Activity activity)
         {
-            return new Post()
-                {
-                    googleId = activity.googleId,
-                    Created = activity.Created,
-                    Author = activity.Author,
-                    Text = gObject.Content
-                };
+            return new Post
+            {
+                googleId = activity.googleId,
+                Created = activity.Created,
+                Author = activity.Author,
+                Text = gObject.Content
+            };
         }
     }
 }

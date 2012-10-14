@@ -20,8 +20,16 @@
 
   <object id="IGoogleDataAdapter" type="GooglePlus.Data.GoogleDataAdapter, GooglePlus.Data"/>
 
-  <object id="IUserManager" type="GooglePlus.Data.Managers.GoogleDataManager, GooglePlus.Data">
+  <object id="IGoogleDataManager" type="GooglePlus.Data.Managers.GoogleDataManager, GooglePlus.Data">
     <constructor-arg name="dataAdapter" ref="IGoogleDataAdapter"/>
+  </object>
+
+  <object id="IUserImportDataProcessor" type="GooglePlus.Main.UserImportDataProcessor, GooglePlus.Main">
+    <constructor-arg name="peopleProvider" ref="IGooglePlusPeopleProvider"/>
+    <constructor-arg name="activitiesProvider" ref="IGooglePlusActivitiesProvider"/>
+    <constructor-arg name="dataManager" ref="IGoogleDataManager"/>
+    <constructor-arg name="userIdStore" ref="IUserIdStore"/>
+    <property name="ClearDatabase" value="false" />
   </object>
 
   <object id="IUserIdStore" type="GooglePlus.Main.UserIdStore, GooglePlus.Main">
