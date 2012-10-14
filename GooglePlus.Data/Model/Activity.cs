@@ -16,5 +16,8 @@ namespace GooglePlus.Data.Model
 
         [Column("author")]
         public User Author { get; set; }
+
+        [Column("google_id")]
+        public string googleId { get; set; }
     }
 }

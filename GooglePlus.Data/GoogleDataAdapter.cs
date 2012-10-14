@@ -16,9 +16,11 @@ namespace GooglePlus.Data
             db = new GooglePlus();
         }
 
+        #region User
+
         public void SaveUser(User data)
         {
-            User existingUser = GetUserById(data.Id);
+            User existingUser = GetUserByGoogleId(data.GoogleId);
 
             if (existingUser != null)
             {
@@ -44,7 +46,29 @@ namespace GooglePlus.Data
 
         public User GetUserByGoogleId(string googleId)
         {
-            throw new NotImplementedException();
+            return db.Users.FirstOrDefault(u => u.GoogleId == googleId);
         }
+
+        #endregion
+
+        #region Activity
+
+        public void SaveActivity(Activity data)
+        {
+            Activity activity = GetActivityByGoogleId(data.googleId);
+
+            if (activity == null)
+            {
+                db.Activities.Add(data);
+                db.SaveChanges();
+            }
+        }
+
+        public Activity GetActivityByGoogleId(string googleId)
+        {
+            return db.Activities.FirstOrDefault(a => a.googleId == googleId);
+        }
+
+        #endregion
     }
 }

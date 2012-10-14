@@ -14,5 +14,8 @@ namespace GooglePlus.Data.Model
 
         [Column("comment")]
         public string Comment { get; set; }
+
+        [Column("url")]
+        public string Url { get; set; }
     }
 }

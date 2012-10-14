@@ -9,29 +9,51 @@ namespace GooglePlus.Main.Converters
 {
     public class ActivityConverter
     {
-        public Photo ConvertPhoto(GooglePlusAttachment attachment)
+        public Activity ConvertActivity(GooglePlusActivity activity, User user)
+        {
+            DateTime created = DateTime.Now;
+            DateTime.TryParse(activity.Published, out created);
+
+            return new Activity
+            {
+                googleId = activity.Id,
+                Created = created,
+                Author = user
+            };
+        }
+        
+        public Photo ConvertPhoto(GooglePlusAttachment attachment, Activity activity)
         {            
             return new Photo
                 {
-                    Src = attachment.url,
-                    Comment = attachment.content
+                    googleId = attachment.Id,
+                    Created = activity.Created,
+                    Author = activity.Author,
+                    Src = attachment.FullImage.Url,
+                    Comment = attachment.Content,
+                    Url = attachment.Url
                 };
         }
 
-        public Share ConvertShare(GooglePlusObject gObject)
+        public Share ConvertShare(GooglePlusObject gObject, Activity activity)
         {
-
             return new Share()
                 {
-                    Comment = gObject.content
+                    googleId = activity.googleId,
+                    Created = activity.Created,
+                    Author = activity.Author,
+                    Comment = gObject.Content
                 };
         }
 
-        public Post ConvertPost(GooglePlusObject gObject)
+        public Post ConvertPost(GooglePlusObject gObject, Activity activity)
         {
             return new Post()
                 {
-                    Text = gObject.content
+                    googleId = activity.googleId,
+                    Created = activity.Created,
+                    Author = activity.Author,
+                    Text = gObject.Content
                 };
         }
     }

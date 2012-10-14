@@ -50,7 +50,7 @@
   <ItemGroup>
     <Compile Include="Contract\IGoogleDataAdapter.cs" />
     <Compile Include="GooglePlus.cs" />
-    <Compile Include="Managers\UserManager.cs" />
+    <Compile Include="Managers\GoogleDataManager.cs" />
     <Compile Include="Migrations\201209171819262_InitialCreate.cs" />
     <Compile Include="Migrations\201209171819262_InitialCreate.Designer.cs">
       <DependentUpon>201209171819262_InitialCreate.cs</DependentUpon>
@@ -58,6 +58,10 @@
     <Compile Include="Migrations\201210071352045_Create_Activities.cs" />
     <Compile Include="Migrations\201210071352045_Create_Activities.Designer.cs">
       <DependentUpon>201210071352045_Create_Activities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201210141434017_Update_Activities.cs" />
+    <Compile Include="Migrations\201210141434017_Update_Activities.Designer.cs">
+      <DependentUpon>201210141434017_Update_Activities.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Activity.cs" />
@@ -81,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201210071352045_Create_Activities.resx">
       <DependentUpon>201210071352045_Create_Activities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201210141434017_Update_Activities.resx">
+      <DependentUpon>201210141434017_Update_Activities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

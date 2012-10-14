@@ -18,6 +18,8 @@ namespace GooglePlus.Main
         private static ILog log = log4net.LogManager.GetLogger(typeof(Program));
 
         static IApplicationContext ctx = ContextRegistry.GetContext();
+        
+        private static GoogleDataManager dataManager;
 
         static void Main(string[] args)
         {
@@ -33,7 +35,7 @@ namespace GooglePlus.Main
             log.Debug("Load from GooglePlus started");
 
             var googleService = (IGooglePlusPeopleProvider)ctx.GetObject("IGooglePlusPeopleProvider");
-            UserManager userManager = (UserManager)ctx.GetObject("IUserManager");
+            dataManager = (GoogleDataManager)ctx.GetObject("IUserManager");
             
             //get initial user ids
             var userIdStore = (IUserIdStore)ctx.GetObject("IUserIdStore");
@@ -49,9 +51,9 @@ namespace GooglePlus.Main
                     //convert user
                     User user = userConverter.Convert(googleUser);
                     //save user on database
-                    userManager.Save(user);
+                    dataManager.SaveUser(user);
                     //load user activities
-                    LoadActivities(userId);
+                    LoadActivities(userId, user);
                 }
                 catch (Exception ex)
                 {
@@ -65,7 +67,7 @@ namespace GooglePlus.Main
             Console.ReadKey();
         }
 
-        private static void LoadActivities(string userId)
+        private static void LoadActivities(string userId, User user)
         {
             log.Debug(string.Format("Activities load from GooglePlus started for user: {0}", userId));
 
@@ -77,26 +79,33 @@ namespace GooglePlus.Main
             try
             {
                 var activities = googleService.GetActivities(userId);
-                foreach (var item in activities.items)
+                foreach (var item in activities.Items)
                 {
-                    switch (item.verb)
+                    var activity = actConverter.ConvertActivity(item, user);
+                    
+                    if (item.GoogleObject != null)
                     {
-                        case "post":
-                            //var post = actConverter.ConvertPost(item.@object);
-                            //post.Created = item.published;
-                            break;
-                        case "share":
-                            //var share = actConverter.ConvertShare(item.@object);
-                            break;
-                    }
-                    //look for photos
-                    if (item.@object.attachments != null)
-                    {
-                        foreach (var attachment in item.@object.attachments)
+                        switch (item.Verb)
                         {
-                            if (attachment.objectType.Equals("photo"))
+                            case "post":
+                                var post = actConverter.ConvertPost(item.GoogleObject, activity);
+                                dataManager.SavePost(post);
+                                break;
+                            case "share":
+                                var share = actConverter.ConvertShare(item.GoogleObject, activity);
+                                dataManager.SaveShare(share);
+                                break;
+                        }
+                        //look for photos
+                        if (item.GoogleObject.Attachments != null)
+                        {
+                            foreach (var attachment in item.GoogleObject.Attachments)
                             {
-                                //var photo = actConverter.ConvertPhoto(attachment);
+                                if (attachment.ObjectType.Equals("photo"))
+                                {
+                                    var photo = actConverter.ConvertPhoto(attachment, activity);
+                                    //dataManager.SavePhoto(photo);
+                                }
                             }
                         }
                     }

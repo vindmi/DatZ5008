@@ -2,24 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace GooglePlus.ApiClient.Classes
 {
+    [DataContract(Name="user")]
     public class GooglePlusUser
     {
-        public string id { get; set; }
+        [DataMember(Name="id")]
+        public string Id { get; set; }
 
-        public Name name { get; set; }
+        [DataMember(Name = "name")]
+        public Name Name { get; set; }
 
-        public string displayName { get; set; }
+        [DataMember(Name = "displayName")]
+        public string DisplayName { get; set; }
 
-        public string tagline { get; set; }
+        [DataMember(Name = "tagline")]
+        public string Tagline { get; set; }
     }
 
+    [DataContract(Name = "name")]
     public class Name
     {
-        public string familyName { get; set; }
+        [DataMember(Name = "familyName")]
+        public string FamilyName { get; set; }
 
-        public string givenName { get; set; }
+        [DataMember(Name = "givenName")]
+        public string GivenName { get; set; }
     }
 }

@@ -2,19 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace GooglePlus.ApiClient.Classes
 {
+    [DataContract]
     public class GooglePlusActivitiesList
     {
-        public string id { get; set; }
+        [DataMember(Name = "id")]
+        public string Id { get; set; }
 
-        public string title { get; set; }
+        [DataMember(Name = "title")]
+        public string Title { get; set; }
 
-        public string nextPageToken { get; set; }
+        [DataMember(Name = "nextPageToken")]
+        public string NextPageToken { get; set; }
 
-        //public DateTime updated { get; set; }
+        [DataMember(Name = "updated")]
+        public string Updated { get; set; }
 
-        public List<GooglePlusActivity> items { get; set; }
+        [DataMember(Name = "items")]
+        public List<GooglePlusActivity> Items { get; set; }
     }
 }

@@ -20,7 +20,7 @@
 
   <object id="IGoogleDataAdapter" type="GooglePlus.Data.GoogleDataAdapter, GooglePlus.Data"/>
 
-  <object id="IUserManager" type="GooglePlus.Data.Managers.UserManager, GooglePlus.Data">
+  <object id="IUserManager" type="GooglePlus.Data.Managers.GoogleDataManager, GooglePlus.Data">
     <constructor-arg name="dataAdapter" ref="IGoogleDataAdapter"/>
   </object>
 

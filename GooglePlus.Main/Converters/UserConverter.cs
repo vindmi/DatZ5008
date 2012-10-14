@@ -13,10 +13,10 @@ namespace GooglePlus.Main.Converters
         {
             return new User
             {
-                FirstName = googleUser.name.givenName,
-                LastName = googleUser.name.familyName,
-                Username = string.Format("{0}_{1}", googleUser.name.givenName,googleUser.name.familyName).ToLower(),
-                GoogleId = googleUser.id,
+                FirstName = googleUser.Name.GivenName,
+                LastName = googleUser.Name.FamilyName,
+                Username = string.Format("{0}_{1}", googleUser.Name.GivenName,googleUser.Name.FamilyName).ToLower(),
+                GoogleId = googleUser.Id,
                 Password = Guid.NewGuid().ToString()
             };
         }

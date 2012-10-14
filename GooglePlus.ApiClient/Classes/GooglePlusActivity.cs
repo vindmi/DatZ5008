@@ -2,67 +2,96 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace GooglePlus.ApiClient.Classes
 {
+    [DataContract]
     public class GooglePlusActivity
     {
-        public string id { get; set; }
+        [DataMember(Name="id")]
+        public string Id { get; set; }
 
-        public GooglePlusUser actor { get; set; }
+        [DataMember(Name = "actor")]
+        public GooglePlusUser Actor { get; set; }
 
-        public string title { get; set; }
+        [DataMember(Name = "title")]
+        public string Title { get; set; }
 
-       // public DateTime published { get; set; }
+        [DataMember(Name = "published")]
+        public string Published { get; set; }
 
-        //public DateTime updated { get; set; }
+        [DataMember(Name = "updated")]
+        public string Updated { get; set; }
 
-        public string url { get; set; }
+        [DataMember(Name = "url")]
+        public string Url { get; set; }
 
-        public string verb { get; set; }
+        [DataMember(Name = "verb")]
+        public string Verb { get; set; }
 
-        public string annotation { get; set; }
+        [DataMember(Name = "annotation")]
+        public string Annotation { get; set; }
 
-        public GooglePlusObject @object { get; set; }
+        [DataMember(Name = "object")]
+        public GooglePlusObject GoogleObject { get; set; }
     }
 
+    [DataContract]
     public class GooglePlusObject
     {
-        public string id { get; set; }
+        [DataMember(Name = "id")]
+        public string Id { get; set; }
 
-        public string objectType { get; set; }
+        [DataMember(Name = "objectType")]
+        public string ObjectType { get; set; }
 
-        public string content { get; set; }
+        [DataMember(Name = "content")]
+        public string Content { get; set; }
 
-        public string url { get; set; }
+        [DataMember(Name = "url")]
+        public string Url { get; set; }
 
-        public List<GooglePlusAttachment> attachments { get; set; }
+        [DataMember(Name = "attachments")]
+        public List<GooglePlusAttachment> Attachments { get; set; }
     }
 
+    [DataContract]
     public class GooglePlusAttachment
     {
-        public string id { get; set; }
+        [DataMember(Name = "id")]
+        public string Id { get; set; }
 
-        public string content { get; set; }
+        [DataMember(Name = "content")]
+        public string Content { get; set; }
 
-        public string url { get; set; }
+        [DataMember(Name = "url")]
+        public string Url { get; set; }
 
-        public GooglePlusImage fullImage { get; set; }
+        [DataMember(Name = "fullImage")]
+        public GooglePlusImage FullImage { get; set; }
 
-        public string objectType { get; set; }
+        [DataMember(Name = "objectType")]
+        public string ObjectType { get; set; }
 
-        public string displayName { get; set; }
+        [DataMember(Name = "displayName")]
+        public string DisplayName { get; set; }
     }
 
+    [DataContract]
     public class GooglePlusImage
     {
-        public string url { get; set; }
+        [DataMember(Name = "url")]
+        public string Url { get; set; }
 
-        public int height { get; set; }
+        [DataMember(Name = "height")]
+        public int Height { get; set; }
 
-        public int width { get; set; }
+        [DataMember(Name = "width")]
+        public int Width { get; set; }
 
-        public string type { get; set; }
+        [DataMember(Name = "type")]
+        public string Type { get; set; }
     }
 
 }
