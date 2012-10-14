@@ -48,7 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GooglePlusPlus.cs" />
+    <Compile Include="Contract\IGoogleDataAdapter.cs" />
+    <Compile Include="GooglePlus.cs" />
     <Compile Include="Managers\UserManager.cs" />
     <Compile Include="Migrations\201209171819262_InitialCreate.cs" />
     <Compile Include="Migrations\201209171819262_InitialCreate.Designer.cs">
@@ -65,8 +66,7 @@
     <Compile Include="Model\Post.cs" />
     <Compile Include="Model\Share.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Contract\IObjectPersister.cs" />
-    <Compile Include="Persisters\UserPersister.cs" />
+    <Compile Include="GoogleDataAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +83,7 @@
       <DependentUpon>201210071352045_Create_Activities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
