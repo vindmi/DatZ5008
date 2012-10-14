@@ -14,6 +14,10 @@
     <property name="Uri" value="https://www.googleapis.com/plus/v1/people"/>
   </object>
 
+  <object id="IGooglePlusActivitiesProvider" parent="BaseGooglePlusProvider" type="GooglePlus.ApiClient.Providers.GoogleActivitiesProvider, GooglePlus.ApiClient">
+    <property name="Uri" value="https://www.googleapis.com/plus/v1/people"/>
+  </object>
+
   <object id="IUserPersister" type="GooglePlus.Data.Persisters.UserPersister, GooglePlus.Data"/>
 
   <object id="IUserManager" type="GooglePlus.Data.Managers.UserManager, GooglePlus.Data">

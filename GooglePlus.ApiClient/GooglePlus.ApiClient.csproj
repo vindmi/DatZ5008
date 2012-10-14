@@ -49,12 +49,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\GooglePlusActivitiesList.cs" />
+    <Compile Include="Classes\GooglePlusActivity.cs" />
     <Compile Include="Classes\GooglePlusUser.cs" />
+    <Compile Include="Contract\IGooglePlusActivitiesProvider.cs" />
     <Compile Include="Contract\IGooglePlusPeopleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\AbstractGoogleDataProvider.cs" />
     <Compile Include="Providers\GooglePeopleProvider.cs" />
     <Compile Include="Contract\IJsonServiceClient.cs" />
+    <Compile Include="Providers\GoogleActivitiesProvider.cs" />
     <Compile Include="Providers\JsonServiceClient.cs" />
   </ItemGroup>
   <ItemGroup>
