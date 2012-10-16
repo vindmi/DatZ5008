@@ -16,6 +16,8 @@ namespace GooglePlus.Data.Contract
 
         void SaveActivity(Activity activity);
 
+        Activity GetActivityById(long activityId);
+
         Activity GetActivityByGoogleId(string googleId);
     }
 }

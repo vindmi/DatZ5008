@@ -20,7 +20,7 @@ namespace GooglePlus.Data
 
         public void SaveUser(User data)
         {
-            User existingUser = GetUserByGoogleId(data.GoogleId);
+            User existingUser = GetUserById(data.Id);
 
             if (existingUser != null)
             {
@@ -55,13 +55,18 @@ namespace GooglePlus.Data
 
         public void SaveActivity(Activity data)
         {
-            Activity activity = GetActivityByGoogleId(data.googleId);
+            Activity activity = GetActivityById(data.Id);
 
             if (activity == null)
             {
                 db.Activities.Add(data);
                 db.SaveChanges();
             }
+        }
+
+        public Activity GetActivityById(long key)
+        {
+            return db.Activities.Find(key);
         }
 
         public Activity GetActivityByGoogleId(string googleId)

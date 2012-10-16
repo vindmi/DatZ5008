@@ -110,7 +110,7 @@ namespace GooglePlus.Main
                         if (attachment.ObjectType.Equals("photo"))
                         {
                             var photo = activityConverter.ConvertPhoto(attachment, activity);
-                            //dataManager.SavePhoto(photo);
+                            dataManager.SavePhoto(photo);
                         }
                     }
                 }               

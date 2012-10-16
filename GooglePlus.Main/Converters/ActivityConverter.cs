@@ -23,7 +23,7 @@ namespace GooglePlus.Main.Converters
         {            
             return new Photo
             {
-                googleId = attachment.Id,
+                googleId = activity.googleId,
                 Created = activity.Created,
                 Author = activity.Author,
                 Src = attachment.FullImage.Url,

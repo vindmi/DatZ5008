@@ -24,7 +24,7 @@ namespace GooglePlus.Main
             var ctx = ContextRegistry.GetContext();
             var importer = (UserImportDataProcessor)ctx.GetObject("IUserImportDataProcessor");
 
-            importer.ImportData(new UserConverter(), new ActivityConverter());
+            importer.ImportData();
 
             log.Debug("Main END");
 
