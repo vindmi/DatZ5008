@@ -1,14 +1,6 @@
 ﻿using log4net;
-using GooglePlus.Data.Managers;
-using GooglePlus.Data.Model;
-using System.Configuration;
 using System;
-using GooglePlus.ApiClient.Classes;
-using Spring.Context;
 using Spring.Context.Support;
-using GooglePlus.ApiClient.Contract;
-using GooglePlus.Main.Converters;
-using GooglePlus.Main.Contract;
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
 
 namespace GooglePlus.Main
