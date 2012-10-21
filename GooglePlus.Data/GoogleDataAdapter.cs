@@ -74,6 +74,11 @@ namespace GooglePlus.Data
             return db.Activities.FirstOrDefault(a => a.googleId == googleId);
         }
 
+        public List<Activity> GetUserActivities(string userId)
+        {
+            return db.Activities.Where(a => a.Author.GoogleId == userId).ToList();
+        }
+
         #endregion
     }
 }

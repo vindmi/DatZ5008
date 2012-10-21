@@ -20,6 +20,7 @@ namespace GooglePlus.Main
         private IGooglePlusPeopleProvider peopleProvider;
         private IGooglePlusActivitiesProvider activitiesProvider;
         private GoogleDataManager dataManager;
+        private RedisDataManager redisDataManager;
         private IUserIdStore userIdStore;
 
         private UserConverter userConverter;
@@ -40,6 +41,8 @@ namespace GooglePlus.Main
 
             this.userConverter = new UserConverter();
             this.activityConverter = new ActivityConverter();
+
+            this.redisDataManager = new RedisDataManager();
         }
 
         public void ImportData()
@@ -65,6 +68,12 @@ namespace GooglePlus.Main
                     dataManager.SaveUser(user);
                     //load user activities
                     LoadActivities(userId, user);
+                    //save Feeds on Redis DB
+                    SaveFeeds(userId);
+
+                    //get list of feeds, only for checking!!
+                    var list = redisDataManager.GetFeeds(userId);
+                    log.Debug("Saved feeds " + list.Count);
                 }
                 catch (Exception ex)
                 {
@@ -117,6 +126,50 @@ namespace GooglePlus.Main
             }
 
             log.Debug("Activities load from GooglePlus finished");
+        }
+
+        private void SaveFeeds(string userId)
+        {
+            List<Activity> activities = dataManager.GetActivities(userId);
+            if (activities != null)
+            {
+                if (activities.Count == 0)
+                    return;
+
+                foreach (Activity ac in activities)
+                {
+                    AddFeed(ac);
+                }
+            }
+        }
+
+        private void AddFeed(Activity activity)
+        {
+            FeedType type;
+            switch (activity.GetType().Name)
+            {
+                case "Post":
+                    type= FeedType.POST;
+                    break;
+                case "Share":
+                    type= FeedType.SHARE;
+                    break;
+                case "Photo":
+                    type= FeedType.PHOTO;
+                    break;
+                default:
+                    log.Error("Unable to recognize FeedType: " + activity.GetType().ToString() + ". Skipping this activity...");
+                    return;
+            }
+
+            Feed feed = new Feed
+            {
+                ReferenceId = activity.Id,
+                Type = type,
+                CreatedDate = activity.Created
+            };
+
+            redisDataManager.AddFeed(feed, activity.Author.GoogleId);
         }
     }
 }
