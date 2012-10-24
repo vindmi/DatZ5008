@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using GooglePlus.Data.Contract;
 using GooglePlus.Data.Model;
 
@@ -9,7 +7,7 @@ namespace GooglePlus.Data
 {
     public class GoogleDataAdapter : IGoogleDataAdapter
     {
-        private GooglePlus db;
+        private readonly GooglePlus db;
 
         public GoogleDataAdapter()
         {

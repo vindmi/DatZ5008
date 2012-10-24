@@ -29,7 +29,8 @@
     <constructor-arg name="activitiesProvider" ref="IGooglePlusActivitiesProvider"/>
     <constructor-arg name="dataManager" ref="IGoogleDataManager"/>
     <constructor-arg name="userIdStore" ref="IUserIdStore"/>
-    <property name="ClearDatabase" value="false" />
+    <property name="IsClearDatabaseRequired" value="false" />
+    <property name="IsFeedSavingEnabled" value="false" />
   </object>
 
   <object id="IUserIdStore" type="GooglePlus.Main.UserIdStore, GooglePlus.Main">

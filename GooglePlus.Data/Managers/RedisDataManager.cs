@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using ServiceStack.Redis;
-using ServiceStack.Text;
 using log4net;
 using GooglePlus.Data.Model;
 
@@ -11,14 +7,14 @@ namespace GooglePlus.Data.Managers
 {
     public class RedisDataManager
     {
-        private static ILog log = log4net.LogManager.GetLogger(typeof(RedisDataManager));
+        private static ILog log = LogManager.GetLogger(typeof(RedisDataManager));
 
         private const string redisKey = "feeds:usr:";
-        private RedisClient redisClient;
+        private readonly RedisClient redisClient;
 
         public RedisDataManager()
         {
-            this.redisClient = new RedisClient("localhost");
+            redisClient = new RedisClient("localhost");
         }
 
         public void AddFeed(Feed feed, string userId)

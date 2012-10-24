@@ -8,9 +8,9 @@ namespace GooglePlus.Data.Managers
 {
     public class GoogleDataManager
     {
-        private static ILog log = log4net.LogManager.GetLogger(typeof(GoogleDataManager));
+        private static readonly ILog log = LogManager.GetLogger(typeof(GoogleDataManager));
 
-        private IGoogleDataAdapter dataAdapter;
+        private readonly IGoogleDataAdapter dataAdapter;
 
         public GoogleDataManager(IGoogleDataAdapter dataAdapter)
         {
