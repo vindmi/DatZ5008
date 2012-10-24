@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using GooglePlus.Data.Contract;
 using GooglePlus.Data.Model;
 
@@ -9,7 +7,7 @@ namespace GooglePlus.Data
 {
     public class GoogleDataAdapter : IGoogleDataAdapter
     {
-        private GooglePlus db;
+        private readonly GooglePlus db;
 
         public GoogleDataAdapter()
         {
@@ -72,6 +70,11 @@ namespace GooglePlus.Data
         public Activity GetActivityByGoogleId(string googleId)
         {
             return db.Activities.FirstOrDefault(a => a.googleId == googleId);
+        }
+
+        public List<Activity> GetUserActivities(string userId)
+        {
+            return db.Activities.Where(a => a.Author.GoogleId == userId).ToList();
         }
 
         #endregion

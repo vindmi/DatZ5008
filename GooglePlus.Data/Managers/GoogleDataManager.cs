@@ -2,14 +2,15 @@
 using log4net;
 using GooglePlus.Data.Model;
 using GooglePlus.Data.Contract;
+using System.Collections.Generic;
 
 namespace GooglePlus.Data.Managers
 {
     public class GoogleDataManager
     {
-        private static ILog log = log4net.LogManager.GetLogger(typeof(GoogleDataManager));
+        private static readonly ILog log = LogManager.GetLogger(typeof(GoogleDataManager));
 
-        private IGoogleDataAdapter dataAdapter;
+        private readonly IGoogleDataAdapter dataAdapter;
 
         public GoogleDataManager(IGoogleDataAdapter dataAdapter)
         {
@@ -76,6 +77,21 @@ namespace GooglePlus.Data.Managers
             catch (Exception ex)
             {
                 log.Error(ex.Message, ex);
+            }
+        }
+
+        public List<Activity> GetActivities(string userId)
+        {
+            log.Info("Called GetActivities: " + userId);
+
+            try
+            {
+                return dataAdapter.GetUserActivities(userId);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message, ex);
+                return null;
             }
         }
 

@@ -7,7 +7,7 @@ namespace GooglePlus.Main
 {
     class Program
     {
-        private static ILog log = log4net.LogManager.GetLogger(typeof(Program));
+        private static readonly ILog log = LogManager.GetLogger(typeof(Program));
 
         static void Main(string[] args)
         {

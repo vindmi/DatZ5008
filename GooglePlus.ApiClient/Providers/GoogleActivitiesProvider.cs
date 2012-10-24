@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using GooglePlus.ApiClient.Classes;
 using GooglePlus.ApiClient.Contract;
 

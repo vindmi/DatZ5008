@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using GooglePlus.ApiClient.Contract;
+﻿using GooglePlus.ApiClient.Contract;
 
 namespace GooglePlus.ApiClient.Providers
 {

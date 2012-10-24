@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Spring.Context;
-using Spring.Context.Support;
 using GooglePlus.ApiClient.Contract;
 using GooglePlus.Data.Managers;
 using log4net;
@@ -15,17 +11,19 @@ namespace GooglePlus.Main
 {
     public class UserImportDataProcessor
     {
-        private static ILog log = log4net.LogManager.GetLogger(typeof(UserImportDataProcessor));
+        private static readonly ILog log = LogManager.GetLogger(typeof(UserImportDataProcessor));
 
-        private IGooglePlusPeopleProvider peopleProvider;
-        private IGooglePlusActivitiesProvider activitiesProvider;
-        private GoogleDataManager dataManager;
-        private IUserIdStore userIdStore;
+        private readonly IGooglePlusPeopleProvider peopleProvider;
+        private readonly IGooglePlusActivitiesProvider activitiesProvider;
+        private readonly GoogleDataManager dataManager;
+        private readonly IUserIdStore userIdStore;
 
-        private UserConverter userConverter;
-        private ActivityConverter activityConverter;
+        private readonly UserConverter userConverter;
+        private readonly ActivityConverter activityConverter;
+        private readonly Lazy<RedisDataManager> redisDataManager = new Lazy<RedisDataManager>(() => new RedisDataManager());
 
-        public bool ClearDatabase { get; private set; }
+        public bool IsClearDatabaseRequired { get; set; }
+        public bool IsFeedSavingEnabled { get; set; }
 
         public UserImportDataProcessor(
             IGooglePlusPeopleProvider peopleProvider,
@@ -38,15 +36,15 @@ namespace GooglePlus.Main
             this.dataManager = dataManager;
             this.userIdStore = userIdStore;
 
-            this.userConverter = new UserConverter();
-            this.activityConverter = new ActivityConverter();
+            userConverter = new UserConverter();
+            activityConverter = new ActivityConverter();
         }
 
         public void ImportData()
         {
             log.Debug("Load from GooglePlus started");
 
-            if (ClearDatabase)
+            if (IsClearDatabaseRequired)
             {
                 //TODO: clear database
             }
@@ -65,6 +63,15 @@ namespace GooglePlus.Main
                     dataManager.SaveUser(user);
                     //load user activities
                     LoadActivities(userId, user);
+
+                    if (IsFeedSavingEnabled)
+                    {
+                        SaveFeeds(userId);
+                        //get list of feeds, only for checking!!
+                        var list = redisDataManager.Value.GetFeeds(userId);
+
+                        log.Debug("Saved feeds " + list.Count);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -117,6 +124,52 @@ namespace GooglePlus.Main
             }
 
             log.Debug("Activities load from GooglePlus finished");
+        }
+
+        private void SaveFeeds(string userId)
+        {
+            List<Activity> activities = dataManager.GetActivities(userId);
+            if (activities == null || activities.Count == 0)
+            {
+                return;
+            }
+
+            foreach (Activity ac in activities)
+            {
+                AddFeed(ac);
+            }
+        }
+
+        private void AddFeed(Activity activity)
+        {
+            FeedType type;
+
+            if (activity is Post)
+            {
+                type = FeedType.POST;
+            }
+            else if (activity is Share)
+            {
+                type = FeedType.SHARE;
+            }
+            else if (activity is Photo)
+            {
+                type = FeedType.PHOTO;
+            }
+            else
+            {
+                log.Error("Unable to recognize FeedType: " + activity.GetType() + ". Skipping this activity...");
+                throw new ArgumentException();
+            }
+
+            Feed feed = new Feed
+            {
+                ReferenceId = activity.Id,
+                Type = type,
+                CreatedDate = activity.Created
+            };
+
+            redisDataManager.Value.AddFeed(feed, activity.Author.GoogleId);
         }
     }
 }

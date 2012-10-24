@@ -37,6 +37,18 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\packages\ServiceStack.Common.3.9.24\lib\net35\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\packages\ServiceStack.Common.3.9.24\lib\net35\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis">
+      <HintPath>..\packages\ServiceStack.Redis.3.9.24\lib\net35\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.3.9.24\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -51,6 +63,7 @@
     <Compile Include="Contract\IGoogleDataAdapter.cs" />
     <Compile Include="GooglePlus.cs" />
     <Compile Include="Managers\GoogleDataManager.cs" />
+    <Compile Include="Managers\RedisDataManager.cs" />
     <Compile Include="Migrations\201209171819262_InitialCreate.cs" />
     <Compile Include="Migrations\201209171819262_InitialCreate.Designer.cs">
       <DependentUpon>201209171819262_InitialCreate.cs</DependentUpon>
@@ -65,6 +78,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Activity.cs" />
+    <Compile Include="Model\Feed.cs" />
     <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\Photo.cs" />
     <Compile Include="Model\Post.cs" />

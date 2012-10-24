@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using GooglePlus.Data.Model;
 
 namespace GooglePlus.Data.Contract
@@ -19,5 +16,7 @@ namespace GooglePlus.Data.Contract
         Activity GetActivityById(long activityId);
 
         Activity GetActivityByGoogleId(string googleId);
+
+        List<Activity> GetUserActivities(string userId);
     }
 }

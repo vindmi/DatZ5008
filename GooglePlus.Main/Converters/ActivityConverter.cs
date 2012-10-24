@@ -8,7 +8,7 @@ namespace GooglePlus.Main.Converters
     {
         public Activity ConvertActivity(GooglePlusActivity activity, User user)
         {
-            DateTime created = DateTime.Now;
+            DateTime created;
             DateTime.TryParse(activity.Published, out created);
 
             return new Activity
