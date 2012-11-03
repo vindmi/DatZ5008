@@ -6,52 +6,44 @@ namespace GooglePlus.Main.Converters
 {
     public class ActivityConverter
     {
-        public Activity ConvertActivity(GooglePlusActivity activity, User user)
+        public T ConvertActivity<T>(GooglePlusActivity activity)
+            where T: Activity, new()
         {
             DateTime created;
             DateTime.TryParse(activity.Published, out created);
 
-            return new Activity
-            {
-                googleId = activity.Id,
-                Created = created,
-                Author = user
-            };
-        }
-        
-        public Photo ConvertPhoto(GooglePlusAttachment attachment, Activity activity)
-        {            
-            return new Photo
-            {
-                googleId = activity.googleId,
-                Created = activity.Created,
-                Author = activity.Author,
-                Src = attachment.FullImage.Url,
-                Comment = attachment.Content,
-                Url = attachment.Url
-            };
+            var act = new T { googleId = activity.Id, Created = created };
+
+            return act;
         }
 
-        public Share ConvertShare(GooglePlusObject gObject, Activity activity)
+        public Photo ConvertToPhoto(GooglePlusActivity activity, GooglePlusAttachment attachment)
         {
-            return new Share
-            {
-                googleId = activity.googleId,
-                Created = activity.Created,
-                Author = activity.Author,
-                Comment = gObject.Content
-            };
+            Photo p = ConvertActivity<Photo>(activity);
+
+            p.Src = attachment.FullImage.Url;
+            p.Comment = attachment.Content;
+            p.Url = attachment.Url;
+
+            return p;
+        }     
+
+        public Share ConvertToShare(GooglePlusActivity activity, GooglePlusObject gObject)
+        {
+            Share share = ConvertActivity<Share>(activity);
+
+            share.Comment = gObject.Content;
+
+            return share;
         }
 
-        public Post ConvertPost(GooglePlusObject gObject, Activity activity)
+        public Post ConvertToPost(GooglePlusActivity activity, GooglePlusObject gObject)
         {
-            return new Post
-            {
-                googleId = activity.googleId,
-                Created = activity.Created,
-                Author = activity.Author,
-                Text = gObject.Content
-            };
+            Post post = ConvertActivity<Post>(activity);
+
+            post.Text = gObject.Content;
+
+            return post;
         }
     }
 }

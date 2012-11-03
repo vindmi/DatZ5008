@@ -16,11 +16,11 @@ namespace GooglePlus.Main
         private readonly IGooglePlusPeopleProvider peopleProvider;
         private readonly IGooglePlusActivitiesProvider activitiesProvider;
         private readonly GoogleDataManager dataManager;
+        private readonly RedisDataManager redisDataManager;
         private readonly IUserIdStore userIdStore;
 
         private readonly UserConverter userConverter;
         private readonly ActivityConverter activityConverter;
-        private readonly Lazy<RedisDataManager> redisDataManager = new Lazy<RedisDataManager>(() => new RedisDataManager());
 
         public bool IsClearDatabaseRequired { get; set; }
         public bool IsFeedSavingEnabled { get; set; }
@@ -29,11 +29,13 @@ namespace GooglePlus.Main
             IGooglePlusPeopleProvider peopleProvider,
             IGooglePlusActivitiesProvider activitiesProvider,
             GoogleDataManager dataManager,
+            RedisDataManager redisDataManager,
             IUserIdStore userIdStore)
         {
             this.peopleProvider = peopleProvider;
             this.activitiesProvider = activitiesProvider;
             this.dataManager = dataManager;
+            this.redisDataManager = redisDataManager;
             this.userIdStore = userIdStore;
 
             userConverter = new UserConverter();
@@ -66,9 +68,9 @@ namespace GooglePlus.Main
 
                     if (IsFeedSavingEnabled)
                     {
-                        SaveFeeds(userId);
+                        ImportFeeds(userId);
                         //get list of feeds, only for checking!!
-                        var list = redisDataManager.Value.GetFeeds(userId);
+                        var list = redisDataManager.GetFeeds(userId);
 
                         log.Debug("Saved feeds " + list.Count);
                     }
@@ -90,24 +92,28 @@ namespace GooglePlus.Main
 
             foreach (var item in activities.Items)
             {
-                var activity = activityConverter.ConvertActivity(item, user);
-
                 if (item.GoogleObject == null)
                 {
                     continue;
                 }
 
+                Activity activity;
+
                 switch (item.Verb)
                 {
                     case "post":
-                        var post = activityConverter.ConvertPost(item.GoogleObject, activity);
-                        dataManager.SavePost(post);
+                        activity = activityConverter.ConvertToPost(item, item.GoogleObject);
                         break;
                     case "share":
-                        var share = activityConverter.ConvertShare(item.GoogleObject, activity);
-                        dataManager.SaveShare(share);
+                        activity = activityConverter.ConvertToShare(item, item.GoogleObject);
                         break;
+                    default:
+                        continue;
                 }
+
+                activity.Author = user;
+
+                dataManager.SaveActivity(activity);
 
                 //look for photos
                 if (item.GoogleObject.Attachments != null)
@@ -116,8 +122,9 @@ namespace GooglePlus.Main
                     {
                         if (attachment.ObjectType.Equals("photo"))
                         {
-                            var photo = activityConverter.ConvertPhoto(attachment, activity);
-                            dataManager.SavePhoto(photo);
+                            var photo = activityConverter.ConvertToPhoto(item, attachment);
+                            photo.Author = user;
+                            dataManager.SaveActivity(photo);
                         }
                     }
                 }               
@@ -126,7 +133,7 @@ namespace GooglePlus.Main
             log.Debug("Activities load from GooglePlus finished");
         }
 
-        private void SaveFeeds(string userId)
+        private void ImportFeeds(string userId)
         {
             List<Activity> activities = dataManager.GetActivities(userId);
             if (activities == null || activities.Count == 0)
@@ -169,7 +176,7 @@ namespace GooglePlus.Main
                 CreatedDate = activity.Created
             };
 
-            redisDataManager.Value.AddFeed(feed, activity.Author.GoogleId);
+            redisDataManager.AddFeed(feed, activity.Author.GoogleId);
         }
     }
 }

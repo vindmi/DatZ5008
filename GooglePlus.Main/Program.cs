@@ -12,7 +12,6 @@ namespace GooglePlus.Main
         static void Main(string[] args)
         {
             log.Debug("Main START");
-
             var ctx = ContextRegistry.GetContext();
             var importer = (UserImportDataProcessor)ctx.GetObject("IUserImportDataProcessor");
 

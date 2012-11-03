@@ -10,11 +10,11 @@ namespace GooglePlus.Data.Managers
         private static ILog log = LogManager.GetLogger(typeof(RedisDataManager));
 
         private const string redisKey = "feeds:usr:";
-        private readonly RedisClient redisClient;
+        private readonly IRedisClient redisClient;
 
-        public RedisDataManager()
+        public RedisDataManager(IRedisClient redisClient)
         {
-            redisClient = new RedisClient("localhost");
+            this.redisClient = redisClient;
         }
 
         public void AddFeed(Feed feed, string userId)

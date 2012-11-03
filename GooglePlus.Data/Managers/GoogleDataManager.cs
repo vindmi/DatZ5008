@@ -19,9 +19,12 @@ namespace GooglePlus.Data.Managers
         
         public void SaveUser(User user)
         {
-            log.Info("Saving user: " + user.GoogleId);
+            if (user == null)
+            {
+                throw new ArgumentNullException();
+            }
 
-            ValidateUser(user);
+            log.Info("Saving user: " + user.GoogleId);
             
             try
             {
@@ -30,53 +33,27 @@ namespace GooglePlus.Data.Managers
             catch (Exception ex)
             {
                 log.Error(ex.Message, ex);
+                throw;
             }
         }
 
-        private void ValidateUser(User user)
+        public void SaveActivity(Activity activity)
         {
+            if (activity == null)
+            {
+                throw new ArgumentNullException();
+            }
 
-        }
-
-        public void SavePost(Post post)
-        {
-            log.Info("Saving post: " + post.googleId);
+            log.Info("Saving " + activity.GetType().Name + ":" + activity.googleId);
 
             try
             {
-                dataAdapter.SaveActivity(post);
+                dataAdapter.SaveActivity(activity);
             }
             catch (Exception ex)
             {
                 log.Error(ex.Message, ex);
-            }
-        }
-
-        public void SaveShare(Share share)
-        {
-            log.Info("Saving share: " + share.googleId);
-
-            try
-            {
-                dataAdapter.SaveActivity(share);
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.Message, ex);
-            }
-        }
-
-        public void SavePhoto(Photo photo)
-        {
-            log.Info("Saving photo: " + photo.googleId);
-
-            try
-            {
-                dataAdapter.SaveActivity(photo);
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.Message, ex);
+                throw;
             }
         }
 
@@ -91,7 +68,7 @@ namespace GooglePlus.Data.Managers
             catch (Exception ex)
             {
                 log.Error(ex.Message, ex);
-                return null;
+                throw;
             }
         }
 

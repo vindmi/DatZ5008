@@ -24,13 +24,22 @@
     <constructor-arg name="dataAdapter" ref="IGoogleDataAdapter"/>
   </object>
 
+   <object id="IRedisDataManager" type="GooglePlus.Data.Managers.RedisDataManager, GooglePlus.Data">
+      <constructor-arg name="redisClient">
+         <object type="ServiceStack.Redis.RedisClient, ServiceStack.Redis">
+           <constructor-arg name="host" value="localhost"/>
+         </object>
+      </constructor-arg>
+   </object>
+
   <object id="IUserImportDataProcessor" type="GooglePlus.Main.UserImportDataProcessor, GooglePlus.Main">
     <constructor-arg name="peopleProvider" ref="IGooglePlusPeopleProvider"/>
     <constructor-arg name="activitiesProvider" ref="IGooglePlusActivitiesProvider"/>
     <constructor-arg name="dataManager" ref="IGoogleDataManager"/>
     <constructor-arg name="userIdStore" ref="IUserIdStore"/>
+    <constructor-arg name="redisDataManager" ref="IRedisDataManager"/>
     <property name="IsClearDatabaseRequired" value="false" />
-    <property name="IsFeedSavingEnabled" value="false" />
+    <property name="IsFeedSavingEnabled" value="true" />
   </object>
 
   <object id="IUserIdStore" type="GooglePlus.Main.UserIdStore, GooglePlus.Main">
