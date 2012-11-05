@@ -4,11 +4,11 @@ namespace GooglePlus.Data.Model
 {
     public class Feed
     {
-        public FeedType Type;
+        public FeedType Type { get; set; }
 
-        public DateTime CreatedDate;
+        public DateTime CreatedDate { get; set; }
 
-        public long ReferenceId;
+        public long ReferenceId { get; set; }
 
         public override string ToString()
         {

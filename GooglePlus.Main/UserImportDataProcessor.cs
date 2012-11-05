@@ -42,13 +42,18 @@ namespace GooglePlus.Main
             activityConverter = new ActivityConverter();
         }
 
+        private void ClearDatabase()
+        {
+
+        }
+
         public void ImportData()
         {
             log.Debug("Load from GooglePlus started");
 
             if (IsClearDatabaseRequired)
             {
-                //TODO: clear database
+                ClearDatabase();
             }
 
             var users = userIdStore.UserIds.Split(',');

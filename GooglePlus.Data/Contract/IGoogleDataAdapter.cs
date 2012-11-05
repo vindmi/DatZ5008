@@ -18,5 +18,7 @@ namespace GooglePlus.Data.Contract
         Activity GetActivityByGoogleId(string googleId);
 
         List<Activity> GetUserActivities(string userId);
+
+        void DeleteUsers();
     }
 }
