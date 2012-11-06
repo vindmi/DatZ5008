@@ -102,6 +102,11 @@ namespace GooglePlus.Main
                     continue;
                 }
 
+                //if google activity already added continue on next activity
+                Activity googleActivity = dataManager.GetActivityByGoogleId(item.Id);
+                if (googleActivity != null)
+                    continue;
+
                 Activity activity;
 
                 switch (item.Verb)

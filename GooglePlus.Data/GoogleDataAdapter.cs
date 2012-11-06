@@ -30,6 +30,11 @@ namespace GooglePlus.Data
         {
             User existingUser = GetUserById(data.Id);
 
+            if (existingUser == null)
+            {
+                existingUser = GetUserByGoogleId(data.GoogleId);
+            }
+
             if (existingUser != null)
             {
                 existingUser.FirstName = data.FirstName;
@@ -70,6 +75,7 @@ namespace GooglePlus.Data
                 db.Activities.Add(data);
                 db.SaveChanges();
             }
+            
         }
 
         public Activity GetActivityById(long key)

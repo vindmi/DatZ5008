@@ -72,6 +72,11 @@ namespace GooglePlus.Data.Managers
             }
         }
 
+        public Activity GetActivityByGoogleId(string googleId)
+        {
+            return dataAdapter.GetActivityByGoogleId(googleId);
+        }
+
         public void DeleteUsers()
         {
             dataAdapter.DeleteUsers();
