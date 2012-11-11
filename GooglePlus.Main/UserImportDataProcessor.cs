@@ -44,9 +44,10 @@ namespace GooglePlus.Main
 
         private void ClearDatabase()
         {
-
+            dataManager.DeleteActivities();
+            dataManager.DeleteUsers();
         }
-
+        
         public void ImportData()
         {
             log.Debug("Load from GooglePlus started");
@@ -74,10 +75,6 @@ namespace GooglePlus.Main
                     if (IsFeedSavingEnabled)
                     {
                         ImportFeeds(userId);
-                        //get list of feeds, only for checking!!
-                        var list = redisDataManager.GetFeeds(userId);
-
-                        log.Debug("Saved feeds " + list.Count);
                     }
                 }
                 catch (Exception ex)
@@ -145,6 +142,11 @@ namespace GooglePlus.Main
 
         private void ImportFeeds(string userId)
         {
+            if (IsClearDatabaseRequired)
+            {
+                redisDataManager.ClearData(userId);
+            }
+
             List<Activity> activities = dataManager.GetActivities(userId);
             if (activities == null || activities.Count == 0)
             {

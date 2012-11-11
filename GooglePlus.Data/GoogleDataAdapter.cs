@@ -24,6 +24,16 @@ namespace GooglePlus.Data
             db.SaveChanges();
         }
 
+        public void DeleteActivities()
+        {
+            foreach (var ac in db.Activities)
+            {
+                db.Activities.Remove(ac);
+            }
+
+            db.SaveChanges();
+        }
+
         #region User
 
         public void SaveUser(User data)

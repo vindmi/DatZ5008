@@ -38,7 +38,7 @@
     <constructor-arg name="dataManager" ref="IGoogleDataManager"/>
     <constructor-arg name="userIdStore" ref="IUserIdStore"/>
     <constructor-arg name="redisDataManager" ref="IRedisDataManager"/>
-    <property name="IsClearDatabaseRequired" value="false" />
+    <property name="IsClearDatabaseRequired" value="true" />
     <property name="IsFeedSavingEnabled" value="true" />
   </object>
 

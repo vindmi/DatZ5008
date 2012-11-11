@@ -81,5 +81,10 @@ namespace GooglePlus.Data.Managers
         {
             dataAdapter.DeleteUsers();
         }
+
+        public void DeleteActivities()
+        {
+            dataAdapter.DeleteActivities();
+        }
     }
 }
