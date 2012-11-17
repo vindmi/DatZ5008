@@ -15,7 +15,7 @@
 
 	<!-- Comma seperated list of projects contained in your solution, DO NOT include Azure or Build projects, these should be projects 
 	     containing Assembly.Info files, so they get appropriately versioned.-->
-	<property name="solution.projects" value="GooglePlus.Data,GooglePlus.ApiClient,GooglePlus.Main" />
+	<property name="solution.projects" value="GooglePlus.Data,GooglePlus.ApiClient,GooglePlus.DataImporter" />
 
 	<!-- Set the configuration for compilation, typically release, but may be custom -->
 	<property name="release.configuration" value="Release" />

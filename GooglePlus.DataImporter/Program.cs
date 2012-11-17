@@ -3,7 +3,7 @@ using System;
 using Spring.Context.Support;
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
 
-namespace GooglePlus.Main
+namespace GooglePlus.DataImporter
 {
     class Program
     {

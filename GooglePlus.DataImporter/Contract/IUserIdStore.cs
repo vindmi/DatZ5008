@@ -1,5 +1,5 @@
 ﻿
-namespace GooglePlus.Main.Contract
+namespace GooglePlus.DataImporter.Contract
 {
     public interface IUserIdStore
     {

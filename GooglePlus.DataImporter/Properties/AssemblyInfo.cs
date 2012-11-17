@@ -12,11 +12,11 @@ using System.Runtime.InteropServices;
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: AssemblyTitleAttribute("GooglePlus.Main")]
+[assembly: AssemblyTitleAttribute("GooglePlus.DataImporter")]
 [assembly: AssemblyDescriptionAttribute("")]
 [assembly: AssemblyConfigurationAttribute("")]
 [assembly: AssemblyCompanyAttribute("D and D")]
-[assembly: AssemblyProductAttribute("GooglePlus.Main")]
+[assembly: AssemblyProductAttribute("GooglePlus.DataImporter")]
 [assembly: AssemblyCopyrightAttribute("Copyright (c) D and D 2012")]
 [assembly: AssemblyTrademarkAttribute("")]
 [assembly: AssemblyCultureAttribute("")]

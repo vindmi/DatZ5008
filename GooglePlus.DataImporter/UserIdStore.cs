@@ -1,6 +1,6 @@
-﻿using GooglePlus.Main.Contract;
+﻿using GooglePlus.DataImporter.Contract;
 
-namespace GooglePlus.Main
+namespace GooglePlus.DataImporter
 {
     public class UserIdStore : IUserIdStore
     {

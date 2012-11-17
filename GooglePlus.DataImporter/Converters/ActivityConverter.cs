@@ -2,7 +2,7 @@
 using GooglePlus.ApiClient.Classes;
 using GooglePlus.Data.Model;
 
-namespace GooglePlus.Main.Converters
+namespace GooglePlus.DataImporter.Converters
 {
     public class ActivityConverter
     {

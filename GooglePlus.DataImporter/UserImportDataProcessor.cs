@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using GooglePlus.ApiClient.Contract;
 using GooglePlus.Data.Managers;
 using log4net;
-using GooglePlus.Main.Contract;
-using GooglePlus.Main.Converters;
+using GooglePlus.DataImporter.Contract;
+using GooglePlus.DataImporter.Converters;
 using GooglePlus.Data.Model;
 
-namespace GooglePlus.Main
+namespace GooglePlus.DataImporter
 {
     public class UserImportDataProcessor
     {

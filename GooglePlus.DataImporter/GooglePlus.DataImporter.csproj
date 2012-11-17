@@ -8,8 +8,8 @@
     <ProjectGuid>{AD9478F1-E726-43D1-BB93-3E7621B262AC}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GooglePlus.Main</RootNamespace>
-    <AssemblyName>GooglePlus.Main</AssemblyName>
+    <RootNamespace>GooglePlus.DataImporter</RootNamespace>
+    <AssemblyName>GooglePlus.DataImporter</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
