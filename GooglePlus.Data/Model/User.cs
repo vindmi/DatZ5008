@@ -4,7 +4,8 @@ namespace GooglePlus.Data.Model
 {
     public class User
     {
-        public long Id { get; set; }
+        [Column("id")]
+        public int Id { get; set; }
 
         [Column("google_id")]
         public string GoogleId { get; set; }

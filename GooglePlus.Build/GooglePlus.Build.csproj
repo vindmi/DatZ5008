@@ -128,7 +128,9 @@
     <None Include="DeployAzureApp.ps1" />
     <None Include="Nant 0.92\lib\common\2.0\nunit-console.exe.config" />
     <None Include="Nant 0.92\NAnt.exe.config" />
-    <None Include="DatZ5008.build" />
+    <None Include="DatZ5008.build">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="NUnit 2.6\nunit-agent-x86.exe.config" />
     <None Include="NUnit 2.6\nunit-agent.exe.config" />
     <None Include="NUnit 2.6\nunit-console-x86.exe.config" />

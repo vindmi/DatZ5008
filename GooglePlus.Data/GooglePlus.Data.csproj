@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contract\IGoogleDataAdapter.cs" />
+    <Compile Include="DatabaseInitializer.cs" />
     <Compile Include="GooglePlus.cs" />
     <Compile Include="Managers\GoogleDataManager.cs" />
     <Compile Include="Managers\RedisDataManager.cs" />

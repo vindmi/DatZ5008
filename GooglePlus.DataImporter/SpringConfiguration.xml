@@ -39,7 +39,7 @@
     <constructor-arg name="userIdStore" ref="IUserIdStore"/>
     <constructor-arg name="redisDataManager" ref="IRedisDataManager"/>
     <property name="IsClearDatabaseRequired" value="true" />
-    <property name="IsFeedSavingEnabled" value="true" />
+    <property name="IsFeedSavingEnabled" value="false" />
   </object>
 
   <object id="IUserIdStore" type="GooglePlus.DataImporter.UserIdStore, GooglePlus.DataImporter">
