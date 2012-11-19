@@ -1,0 +1,14 @@
+﻿@model GooglePlus.Data.Model.User
+
+@{
+    ViewBag.Title = "User profile";
+    Layout = "~/Views/Shared/_InternalLayout.cshtml";
+}
+
+<div class="user_profile">
+	<b>Google ID:</b>
+	@Model.GoogleId
+</div>
+<br />
+<br />
+<div id="user_feeds">User feeds are going to appear there...</div>

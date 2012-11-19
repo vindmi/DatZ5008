@@ -77,7 +77,7 @@ namespace GooglePlus.Web.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Users");
                 }
                 catch (MembershipCreateUserException e)
                 {
@@ -331,7 +331,7 @@ namespace GooglePlus.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Users");
         }
 
         public enum ManageMessageId

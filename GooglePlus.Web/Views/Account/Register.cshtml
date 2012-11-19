@@ -1,6 +1,7 @@
 ﻿@model GooglePlus.Web.Models.RegisterModel
 @{
     ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_ExternalLayout.cshtml";
 }
 
 <hgroup class="title">
@@ -30,6 +31,9 @@
         </ol>
         <input type="submit" value="Register" />
     </fieldset>
+    <p>
+        @Html.ActionLink("Login", "Login") if you already have an account.
+    </p>
 }
 
 @section Scripts {

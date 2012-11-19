@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <header>
+            <div id="home_header">
+                <section>
+                    <p style="text-align: center; font-size: 13pt;"><strong>NewsFeed Portal</strong></p>
+                    Welcome, @User.Identity.Name !
+                    <ul>
+                        <li>@Html.ActionLink("People", "List", "Users")</li>
+                        <li>@using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+                            @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                            }
+                        </li>
+                    </ul>
+                </section>
+                <nav>
+                    <table id="user_main_menu">
+                        <tr>
+                            <td>@Html.ActionLink("Home", "Index", "Users")</td>
+                            <td>@Html.ActionLink("Posts", "Posts", "Activities")</td>
+                            <td>@Html.ActionLink("Posts", "Photos", "Activities")</td>
+                            <td>@Html.ActionLink("Share", "Shares", "Activities")</td>
+                        </tr>
+                    </table>
+                </nav>
+            </div>
+        </header>
+        <section>@RenderBody()</section>
+        <footer>
+        </footer>
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>
