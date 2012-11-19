@@ -1,10 +1,14 @@
 ﻿
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace GooglePlus.Data.Model
 {
     public class User
     {
-        [Column("id")]
+        [Key]
+        [Column("Id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Column("google_id")]
@@ -13,9 +17,6 @@ namespace GooglePlus.Data.Model
         [Column("username")]
         public string Username { get; set; }
 
-        [Column("password")]
-        public string Password { get; set; }
-
         [Column("first_name")]
         public string FirstName { get; set; }
 
@@ -23,5 +24,15 @@ namespace GooglePlus.Data.Model
         public string LastName { get; set; }
 
         public Gender Gender { get; set; }
+
+        [Column("birthday")]
+        public DateTime? BirthDay { get; set; }
+
+        [Column("location")]
+        [StringLength(255)]
+        public string Location { get; set; }
+
+        [Column("education")]
+        public string Education { get; set; }
     }
 }

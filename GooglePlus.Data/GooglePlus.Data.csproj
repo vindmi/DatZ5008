@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201210141434017_Update_Activities.Designer.cs">
       <DependentUpon>201210141434017_Update_Activities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201211191718238_UpdateUsers.cs" />
+    <Compile Include="Migrations\201211191718238_UpdateUsers.Designer.cs">
+      <DependentUpon>201211191718238_UpdateUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Activity.cs" />
     <Compile Include="Model\Feed.cs" />
@@ -107,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201210141434017_Update_Activities.resx">
       <DependentUpon>201210141434017_Update_Activities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201211191718238_UpdateUsers.resx">
+      <DependentUpon>201211191718238_UpdateUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

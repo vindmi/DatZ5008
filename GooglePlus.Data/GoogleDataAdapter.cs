@@ -51,7 +51,6 @@ namespace GooglePlus.Data
                 existingUser.Gender = data.Gender;
                 existingUser.GoogleId = data.GoogleId;
                 existingUser.LastName = data.LastName;
-                existingUser.Password = data.Password;
                 existingUser.Username = data.Username;
             }
             else
