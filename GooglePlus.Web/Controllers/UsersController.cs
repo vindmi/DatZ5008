@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using GooglePlus.Data;
+using GooglePlus.Data.Contract;
 using GooglePlus.Data.Model;
-using WebMatrix.WebData;
+using GooglePlus.Web.Classes;
 
 namespace GooglePlus.Web.Controllers
 {
@@ -14,15 +11,27 @@ namespace GooglePlus.Web.Controllers
     {
         //
         // GET: /Users/
-
+        [HttpGet]
         public ActionResult Index()
         {
-            return View(new User { GoogleId = "fake google id" });
+            var userProvider = SpringContext.Resolve<IGoogleDataAdapter>();
+            var membership = SpringContext.Resolve<IMembershipAdapter>();
+
+            var user = userProvider.GetUserById(membership.GetUserId(User.Identity.Name));
+
+            return View(user);
         }
 
+        [HttpGet]
         public ActionResult List()
         {
             return View(new List<User>());
+        }
+
+        [HttpPost]
+        public ActionResult Update(User user)
+        {
+            return View("Index");
         }
     }
 }

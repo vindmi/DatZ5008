@@ -5,10 +5,31 @@
     Layout = "~/Views/Shared/_InternalLayout.cshtml";
 }
 
-<div class="user_profile">
-	<b>Google ID:</b>
-	@Model.GoogleId
-</div>
-<br />
-<br />
+@using (Html.BeginForm("Update", "Users"))
+{
+    <fieldset>
+        <legend>User profile</legend>
+
+        <div>@Html.LabelFor(u => u.GoogleId)</div>
+        <div>@Html.EditorFor(u => u.GoogleId)</div>
+        
+        <div>@Html.LabelFor(u => u.FirstName)</div>
+        <div>@Html.EditorFor(u => u.FirstName)</div>
+        
+        <div>@Html.LabelFor(u => u.LastName)</div>
+        <div>@Html.EditorFor(u => u.LastName)</div>
+        
+        <div>@Html.LabelFor(u => u.Username)</div>
+        <div>@Html.TextBoxFor(u => u.Username, new { disabled = "disabled" })</div>
+        
+        <div>@Html.LabelFor(u => u.BirthDay)</div>
+        <div>@Html.EditorFor(u => u.BirthDay)</div>
+        
+        <div>@Html.LabelFor(u => u.Education)</div>
+        <div>@Html.EditorFor(u => u.Education)</div>
+        
+        <div>@Html.LabelFor(u => u.Location)</div>
+        <div>@Html.EditorFor(u => u.Location)</div>
+    </fieldset>
+}
 <div id="user_feeds">User feeds are going to appear there...</div>

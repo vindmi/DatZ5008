@@ -7,7 +7,7 @@ namespace GooglePlus.Data.Contract
     {
         void SaveUser(User user);
 
-        User GetUserById(long userId);
+        User GetUserById(int userId);
 
         User GetUserByGoogleId(string googleId);
 
@@ -18,6 +18,12 @@ namespace GooglePlus.Data.Contract
         Activity GetActivityByGoogleId(string googleId);
 
         List<Activity> GetUserActivities(string userId);
+
+        List<Post> GetPosts(int userId);
+
+        List<Photo> GetPhotos(int userId);
+
+        List<Share> GetShares(int userId);
 
         void DeleteUsers();
 

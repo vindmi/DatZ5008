@@ -34,8 +34,6 @@ namespace GooglePlus.Data
             db.SaveChanges();
         }
 
-        #region User
-
         public void SaveUser(User data)
         {
             User existingUser = GetUserById(data.Id);
@@ -61,7 +59,7 @@ namespace GooglePlus.Data
             db.SaveChanges();
         }
 
-        public User GetUserById(long key)
+        public User GetUserById(int key)
         {
             return db.Users.Find(key);
         }
@@ -70,10 +68,6 @@ namespace GooglePlus.Data
         {
             return db.Users.FirstOrDefault(u => u.GoogleId == googleId);
         }
-
-        #endregion
-
-        #region Activity
 
         public void SaveActivity(Activity data)
         {
@@ -105,6 +99,28 @@ namespace GooglePlus.Data
                 .ToList();
         }
 
-        #endregion
+        public List<Post> GetPosts(int userId)
+        {
+            return GetActivities<Post>(userId).ToList();
+        }
+
+        public List<Photo> GetPhotos(int userId)
+        {
+            return GetActivities<Photo>(userId).ToList();
+        }
+
+        public List<Share> GetShares(int userId)
+        {
+            return GetActivities<Share>(userId).ToList();
+        }
+
+        private IQueryable<T> GetActivities<T>(int userId)
+            where T : Activity
+        {
+            return db.Activities
+                .Include("Author")
+                .OfType<T>()
+                .Where(a => a.Author.Id == userId);
+        }
     }
 }
