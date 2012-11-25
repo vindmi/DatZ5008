@@ -9,15 +9,13 @@ namespace GooglePlus.Web.Controllers
     [Authorize]
     public class UsersController : Controller
     {
-        //
-        // GET: /Users/
+        public IMembershipAdapter Membership { get; set; }
+        public IGoogleDataAdapter DataAdapter { get; set; }
+
         [HttpGet]
         public ActionResult Index()
         {
-            var userProvider = SpringContext.Resolve<IGoogleDataAdapter>();
-            var membership = SpringContext.Resolve<IMembershipAdapter>();
-
-            var user = userProvider.GetUserById(membership.GetUserId(User.Identity.Name));
+            var user = DataAdapter.GetUserById(Membership.GetUserId(User.Identity.Name));
 
             return View(user);
         }

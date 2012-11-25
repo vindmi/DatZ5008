@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using GooglePlus.Web.Classes;
 using WebMatrix.WebData;
 using System.Web.Optimization;
 using GooglePlus.Data;
@@ -22,6 +23,8 @@ namespace GooglePlus.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ControllerBuilder.Current.SetControllerFactory(typeof(SpringControllerFactory));
         }
     }
 }

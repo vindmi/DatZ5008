@@ -3,4 +3,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
     <object id="IMembershipAdapter" singleton="true" scope="session" type="GooglePlus.Web.Classes.WebSecurityAdapter, GooglePlus.Web"/>
+    <object id="BaseGooglePlusController" abstract="true">
+        <property name="Membership" ref="IMembershipAdapter"/>
+        <property name="DataAdapter" ref="IGoogleDataAdapter"/>
+    </object>
+    <object id="ActivitiesController" parent="BaseGooglePlusController" type="GooglePlus.Web.Controllers.ActivitiesController, GooglePlus.Web" singleton="false">
+    </object>
+    <object id="UsersController" parent="BaseGooglePlusController" type="GooglePlus.Web.Controllers.UsersController, GooglePlus.Web" singleton="false">
+    </object>
+    <object id="AccountController" type="GooglePlus.Web.Controllers.AccountController, GooglePlus.Web" singleton="false">
+        <property name="Membership" ref="IMembershipAdapter"/>
+    </object>
 </objects>
