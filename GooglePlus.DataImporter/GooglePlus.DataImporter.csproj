@@ -102,7 +102,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SpringConfiguration.xml">
+    <Content Include="GooglePlus.DataImporter.spring.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>

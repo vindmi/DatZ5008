@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
+  <object id="IGoogleDataAdapter" type="GooglePlus.Data.GoogleDataAdapter, GooglePlus.Data"/>
+
+  <object id="IGoogleDataManager" type="GooglePlus.Data.Managers.GoogleDataManager, GooglePlus.Data">
+    <constructor-arg name="dataAdapter" ref="IGoogleDataAdapter"/>
+  </object>
+
+  <object id="IRedisDataManager" type="GooglePlus.Data.Managers.RedisDataManager, GooglePlus.Data">
+    <constructor-arg name="redisClient">
+      <object type="ServiceStack.Redis.RedisClient, ServiceStack.Redis">
+        <constructor-arg name="host" value="localhost"/>
+      </object>
+    </constructor-arg>
+  </object>
+  
+  <object id="IRestServiceClient" type="GooglePlus.ApiClient.Providers.JsonServiceClient, GooglePlus.ApiClient"/>
+
+  <object id="BaseGooglePlusProvider" abstract="true">
+    <property name="ApiKey" value="AIzaSyD7EXrp8GOD2dRhvXKzDTCLzZccMHKoIok" />
+    <property name="JsonDataProvider" ref="IRestServiceClient" />
+  </object>
+
+  <object id="IGooglePlusPeopleProvider" parent="BaseGooglePlusProvider" type="GooglePlus.ApiClient.Providers.GooglePeopleProvider, GooglePlus.ApiClient">
+    <property name="Uri" value="https://www.googleapis.com/plus/v1/people"/>
+  </object>
+
+  <object id="IGooglePlusActivitiesProvider" parent="BaseGooglePlusProvider" type="GooglePlus.ApiClient.Providers.GoogleActivitiesProvider, GooglePlus.ApiClient">
+    <property name="Uri" value="https://www.googleapis.com/plus/v1/people"/>
+  </object>
+</objects>

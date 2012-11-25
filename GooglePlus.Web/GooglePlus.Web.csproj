@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Classes\SpringContext.cs" />
     <Compile Include="Classes\WebSecurityAdapter.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActivitiesController.cs" />
@@ -116,7 +117,6 @@
     <Compile Include="Classes\IMembershipAdapter.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\SpringContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -154,6 +154,14 @@
     <Content Include="Content\Themes\base\jquery.ui.theme.css" />
     <Content Include="Content\Themes\base\jquery.ui.tooltip.css" />
     <Content Include="Global.asax" />
+    <Content Include="GooglePlus.Web.spring.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GooglePlus.DataImporter.spring.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\jquery-1.8.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-ui-1.9.0.js" />
@@ -202,6 +210,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GooglePlus.ApiClient\GooglePlus.ApiClient.csproj">
+      <Project>{A364BC56-4A85-4BE4-8974-5124B4CAEE10}</Project>
+      <Name>GooglePlus.ApiClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GooglePlus.Data\GooglePlus.Data.csproj">
       <Project>{90BB3D40-B80A-4389-A13C-D5335168A8F2}</Project>
       <Name>GooglePlus.Data</Name>
