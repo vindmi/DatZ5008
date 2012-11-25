@@ -19,6 +19,8 @@ namespace GooglePlus.Data.Contract
 
         List<Activity> GetUserActivities(string userId);
 
+        List<User> GetUsers();
+
         List<Post> GetPosts(int userId);
 
         List<Photo> GetPhotos(int userId);

@@ -10,25 +10,67 @@ namespace GooglePlus.Web.Controllers
         public IMembershipAdapter Membership { get; set; }
         public IGoogleDataAdapter DataAdapter { get; set; }
 
-        public ActionResult Posts()
+        public ActionResult Posts(int? id)
         {
-            var posts = DataAdapter.GetPosts(Membership.GetUserId(User.Identity.Name));
+            var currentUserId = Membership.GetUserId(User.Identity.Name);
 
-            return View(posts);
+            if (!id.HasValue)
+            {
+                id = currentUserId;
+            }
+
+            var posts = DataAdapter.GetPosts(id.Value);
+
+            if (id.Value == currentUserId)
+            {
+                return View(posts);
+            }
+
+            ViewBag.ProfileId = id.Value;
+
+            return View("OtherPosts", posts);
         }
 
-        public ActionResult Photos()
+        public ActionResult Photos(int? id)
         {
-            var photos = DataAdapter.GetPhotos(Membership.GetUserId(User.Identity.Name));
+            var currentUserId = Membership.GetUserId(User.Identity.Name);
 
-            return View(photos);
+            if (!id.HasValue)
+            {
+                id = currentUserId;
+            }
+
+            var photos = DataAdapter.GetPhotos(id.Value);
+
+            if (id.Value == currentUserId)
+            {
+                return View(photos);
+            }
+
+            ViewBag.ProfileId = id.Value;
+
+            return View("OtherPhotos", photos);
         }
 
-        public ActionResult Shares()
+        public ActionResult Shares(int? id)
         {
-            var shares = DataAdapter.GetShares(Membership.GetUserId(User.Identity.Name));
+            var currentUserId = Membership.GetUserId(User.Identity.Name);
 
-            return View(shares);
+            if (!id.HasValue)
+            {
+                id = currentUserId;
+            }
+
+            var shares = DataAdapter.GetShares(id.Value);
+
+            if (id.Value == currentUserId)
+            {
+                return View(shares);
+            }
+
+            ViewBag.ProfileId = id.Value;
+
+            return View("OtherShares", shares);
         }
     }
 }

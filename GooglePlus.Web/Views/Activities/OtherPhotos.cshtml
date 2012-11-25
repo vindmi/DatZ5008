@@ -1,18 +1,19 @@
-﻿@model IEnumerable<GooglePlus.Data.Model.Post>
+﻿@model IEnumerable<GooglePlus.Data.Model.Photo>
 
 @{
-    ViewBag.Title = "Posts";
+    ViewBag.Title = "Photos";
 }
 
-<h2>Posts</h2>
-
-<p>
-   @* @Html.ActionLink("Create New", "Create")*@
-</p>
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Text)
+            @Html.DisplayNameFor(model => model.Src)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Url)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Created)
@@ -26,7 +27,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Text)
+            @Html.DisplayFor(modelItem => item.Src)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Url)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Created)

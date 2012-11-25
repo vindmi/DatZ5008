@@ -34,5 +34,10 @@ namespace GooglePlus.Data.Model
 
         [Column("education")]
         public string Education { get; set; }
+
+        public string FullName
+        {
+            get { return String.Format("{0} {1}", FirstName, LastName); }
+        }
     }
 }

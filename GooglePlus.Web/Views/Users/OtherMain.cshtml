@@ -1,0 +1,71 @@
+﻿@model GooglePlus.Data.Model.User
+
+@{
+    ViewBag.Title = "Profile";
+    ViewBag.ProfileId = Model.Id;
+}
+
+<h2>This is other user main page</h2>
+
+<fieldset>
+    <legend>User</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GoogleId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GoogleId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Username)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Username)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BirthDay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BirthDay)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Location)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Location)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Education)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Education)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FullName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "List")
+</p>

@@ -14,9 +14,10 @@
                     <p style="text-align: center; font-size: 13pt;"><strong>NewsFeed Portal</strong></p>
                     Welcome, @User.Identity.Name !
                     <ul>
+                        <li>@Html.ActionLink("Home", "Main", "Users", new { id = (int?)null }, null)</li>
                         <li>@Html.ActionLink("People", "List", "Users")</li>
                         <li>@using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
-                            @Html.AntiForgeryToken()
+                                @Html.AntiForgeryToken()
                                 <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
                             }
                         </li>
@@ -25,10 +26,10 @@
                 <nav>
                     <table id="user_main_menu">
                         <tr>
-                            <td>@Html.ActionLink("Home", "Index", "Users")</td>
-                            <td>@Html.ActionLink("Posts", "Posts", "Activities")</td>
-                            <td>@Html.ActionLink("Posts", "Photos", "Activities")</td>
-                            <td>@Html.ActionLink("Share", "Shares", "Activities")</td>
+                            <td>@Html.ActionLink("Main", "Main", "Users", new { id = ViewBag.ProfileId }, null)</td>
+                            <td>@Html.ActionLink("Posts", "Posts", "Activities", new { id = ViewBag.ProfileId }, null)</td>
+                            <td>@Html.ActionLink("Photos", "Photos", "Activities", new { id = ViewBag.ProfileId }, null)</td>
+                            <td>@Html.ActionLink("Share", "Shares", "Activities", new { id = ViewBag.ProfileId }, null)</td>
                         </tr>
                     </table>
                 </nav>

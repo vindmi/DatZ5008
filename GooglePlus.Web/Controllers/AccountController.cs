@@ -74,7 +74,7 @@ namespace GooglePlus.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Users");
+            return RedirectToAction("Main", "Users");
         }
 
         public enum ManageMessageId

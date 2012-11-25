@@ -2,14 +2,9 @@
 
 @{
     ViewBag.Title = "List";
-    Layout = "~/Views/Shared/_InternalLayout.cshtml";
 }
 
 <h2>List</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table>
     <tr>
         <th>
@@ -19,10 +14,7 @@
             @Html.DisplayNameFor(model => model.Username)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.FullName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BirthDay)
@@ -45,10 +37,7 @@
             @Html.DisplayFor(modelItem => item.Username)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
+            @Html.ActionLink(item.FullName, "Main", new { id = item.Id })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BirthDay)

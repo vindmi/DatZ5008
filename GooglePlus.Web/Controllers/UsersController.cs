@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using GooglePlus.Data.Contract;
 using GooglePlus.Data.Model;
 using GooglePlus.Web.Classes;
@@ -13,23 +12,35 @@ namespace GooglePlus.Web.Controllers
         public IGoogleDataAdapter DataAdapter { get; set; }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Main(int? id)
         {
-            var user = DataAdapter.GetUserById(Membership.GetUserId(User.Identity.Name));
+            var currentUserId = Membership.GetUserId(User.Identity.Name);
 
-            return View(user);
+            if (!id.HasValue)
+            {
+                id = currentUserId;
+            }
+
+            var user = DataAdapter.GetUserById(id.Value);
+
+            if (id.Value == currentUserId)
+            {
+                return View(user);
+            }
+
+            return View("OtherMain", user);
         }
 
         [HttpGet]
         public ActionResult List()
         {
-            return View(new List<User>());
+            return View(DataAdapter.GetUsers());
         }
 
         [HttpPost]
         public ActionResult Update(User user)
         {
-            return View("Index");
+            return View("Main");
         }
     }
 }

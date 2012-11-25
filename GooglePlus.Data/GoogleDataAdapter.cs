@@ -99,6 +99,11 @@ namespace GooglePlus.Data
                 .ToList();
         }
 
+        public List<User> GetUsers()
+        {
+            return db.Users.ToList();
+        }
+
         public List<Post> GetPosts(int userId)
         {
             return GetActivities<Post>(userId).ToList();

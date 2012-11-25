@@ -223,13 +223,28 @@
     <Content Include="Views\Activities\Shares.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Main.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Users\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_ExternalLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Users\OtherMain.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Activities\OtherPhotos.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Activities\OtherPosts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Activities\OtherShares.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_ProfileInfo.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
