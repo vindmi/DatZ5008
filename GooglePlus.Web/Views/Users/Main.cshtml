@@ -9,6 +9,10 @@
     <fieldset>
         <legend>User profile</legend>
 
+        @Html.HiddenFor(u => u.Id)
+        @Html.HiddenFor(u => u.Username)
+
+
         <div>@Html.LabelFor(u => u.GoogleId)</div>
         <div>@Html.EditorFor(u => u.GoogleId)</div>
         
@@ -29,6 +33,18 @@
         
         <div>@Html.LabelFor(u => u.Location)</div>
         <div>@Html.EditorFor(u => u.Location)</div>
-    </fieldset>
+        <br />
+        <input type="submit" value="Save changes"/>
+    </fieldset>  
 }
+@using (Html.BeginForm("Import", "Users"))
+{
+    if (!string.IsNullOrEmpty(Model.GoogleId))
+    {
+        <fieldset>
+            <input type="submit" value="Import data from Google+"/>
+        </fieldset> 
+    }
+}
+<hr />
 <div id="user_feeds">User feeds are going to appear there...</div>

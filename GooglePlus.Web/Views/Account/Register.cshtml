@@ -28,6 +28,18 @@
                 @Html.LabelFor(m => m.ConfirmPassword)
                 @Html.PasswordFor(m => m.ConfirmPassword)
             </li>
+            <li>
+                @Html.LabelFor(m => m.BirthDay)
+                @Html.EditorFor(m => m.BirthDay)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Education)
+                @Html.EditorFor(m => m.Education)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Location)
+                @Html.EditorFor(m => m.Location)
+            </li>
         </ol>
         <input type="submit" value="Register" />
     </fieldset>

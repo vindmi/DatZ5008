@@ -1,0 +1,43 @@
+﻿@model GooglePlus.Data.Model.Share
+
+@{
+    ViewBag.Title = "CreateShare";
+}
+
+<h2>CreateShare</h2>
+
+@using (Html.BeginForm("CreateShare", "Activities")) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Share</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Content)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Content)
+            @Html.ValidationMessageFor(model => model.Content)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comment)
+            @Html.ValidationMessageFor(model => model.Comment)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Shares")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

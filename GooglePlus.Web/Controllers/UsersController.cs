@@ -2,6 +2,8 @@
 using GooglePlus.Data.Contract;
 using GooglePlus.Data.Model;
 using GooglePlus.Web.Classes;
+using System;
+using Spring.Context.Support;
 
 namespace GooglePlus.Web.Controllers
 {
@@ -39,8 +41,18 @@ namespace GooglePlus.Web.Controllers
 
         [HttpPost]
         public ActionResult Update(User user)
+        {          
+            DataAdapter.SaveUser(user);
+
+            return RedirectToAction("Main");
+        }
+
+        [HttpPost]
+        public ActionResult Import(User user)
         {
-            return View("Main");
+            throw new Exception("not implemented");
+
+            return RedirectToAction("Main");
         }
     }
 }

@@ -19,9 +19,9 @@ namespace GooglePlus.Web.Classes
             return WebSecurity.GetUserId(userName);
         }
 
-        public void CreateUserAndAccount(string userName, string password)
+        public void CreateUserAndAccount(string userName, string password, object additionalProperties)
         {
-            WebSecurity.CreateUserAndAccount(userName, password);
+            WebSecurity.CreateUserAndAccount(userName, password, additionalProperties);
         }
     }
 }

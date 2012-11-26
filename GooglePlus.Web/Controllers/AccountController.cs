@@ -53,10 +53,17 @@ namespace GooglePlus.Web.Controllers
                 // Attempt to register the user
                 try
                 {
-                    Membership.CreateUserAndAccount(model.UserName, model.Password);
+                    var properties = new { 
+                        Location = model.Location, 
+                        Education = model.Education, 
+                        BirthDay = model.BirthDay 
+                    };
+                    Membership.CreateUserAndAccount(model.UserName, model.Password, properties);
                     Membership.Login(model.UserName, model.Password);
 
-                    return RedirectToAction("Index", "Users");
+                    var userId = Membership.GetUserId(model.UserName);
+
+                    return RedirectToAction("Index", "Main");
                 }
                 catch (MembershipCreateUserException e)
                 {

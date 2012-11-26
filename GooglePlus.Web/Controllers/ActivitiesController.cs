@@ -1,6 +1,8 @@
 ﻿using System.Web.Mvc;
 using GooglePlus.Data.Contract;
 using GooglePlus.Web.Classes;
+using GooglePlus.Data.Model;
+using System;
 
 namespace GooglePlus.Web.Controllers
 {
@@ -71,6 +73,23 @@ namespace GooglePlus.Web.Controllers
             ViewBag.ProfileId = id.Value;
 
             return View("OtherShares", shares);
+        }
+
+        public ActionResult CreateShare()
+        {
+            return View("CreateShare");
+        }
+
+        [HttpPost]
+        public ActionResult CreateShare(Share share)
+        {
+            var currentUserId = Membership.GetUserId(User.Identity.Name);
+
+            share.Author = DataAdapter.GetUserById(currentUserId);
+            share.Created = DateTime.Now;
+            DataAdapter.SaveActivity(share);
+
+            return RedirectToAction("Shares", currentUserId);
         }
     }
 }

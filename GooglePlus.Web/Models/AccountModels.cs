@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using System;
 
 namespace GooglePlus.Web.Models
 {
@@ -62,5 +63,17 @@ namespace GooglePlus.Web.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Date of birth")]
+        public DateTime BirthDay { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Education")]
+        public string Education { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Location")]
+        public string Location { get; set; }
     }
 }
