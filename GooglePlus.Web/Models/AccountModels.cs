@@ -66,7 +66,7 @@ namespace GooglePlus.Web.Models
 
         [DataType(DataType.DateTime)]
         [Display(Name = "Date of birth")]
-        public DateTime BirthDay { get; set; }
+        public DateTime? BirthDay { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "Education")]

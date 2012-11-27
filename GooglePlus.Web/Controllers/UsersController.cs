@@ -4,6 +4,7 @@ using GooglePlus.Data.Model;
 using GooglePlus.Web.Classes;
 using System;
 using Spring.Context.Support;
+using System.Linq;
 
 namespace GooglePlus.Web.Controllers
 {
@@ -36,7 +37,13 @@ namespace GooglePlus.Web.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            return View(DataAdapter.GetUsers());
+            var currentUserId = Membership.GetUserId(User.Identity.Name);
+            var users = from u in DataAdapter.GetUsers()
+                    where u.Id != currentUserId
+                    orderby u.FirstName ascending
+                    select u;
+
+            return View(users);
         }
 
         [HttpPost]
@@ -50,7 +57,7 @@ namespace GooglePlus.Web.Controllers
         [HttpPost]
         public ActionResult Import(User user)
         {
-            throw new Exception("not implemented");
+            throw new NotImplementedException();
 
             return RedirectToAction("Main");
         }

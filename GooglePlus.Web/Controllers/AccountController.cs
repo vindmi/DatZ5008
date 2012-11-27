@@ -61,9 +61,7 @@ namespace GooglePlus.Web.Controllers
                     Membership.CreateUserAndAccount(model.UserName, model.Password, properties);
                     Membership.Login(model.UserName, model.Password);
 
-                    var userId = Membership.GetUserId(model.UserName);
-
-                    return RedirectToAction("Index", "Main");
+                    return RedirectToAction("Main", "Users");
                 }
                 catch (MembershipCreateUserException e)
                 {
