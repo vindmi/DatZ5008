@@ -75,12 +75,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contract\IUserIdStore.cs" />
     <Compile Include="Converters\ActivityConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Converters\UserConverter.cs" />
-    <Compile Include="UserIdStore.cs" />
     <Compile Include="UserImportDataProcessor.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -30,4 +30,13 @@
   <object id="IGooglePlusActivitiesProvider" parent="BaseGooglePlusProvider" type="GooglePlus.ApiClient.Providers.GoogleActivitiesProvider, GooglePlus.ApiClient">
     <property name="Uri" value="https://www.googleapis.com/plus/v1/people"/>
   </object>
+
+  <object id="IUserImportDataProcessor" type="GooglePlus.DataImporter.UserImportDataProcessor, GooglePlus.DataImporter">
+    <constructor-arg name="peopleProvider" ref="IGooglePlusPeopleProvider"/>
+    <constructor-arg name="activitiesProvider" ref="IGooglePlusActivitiesProvider"/>
+    <constructor-arg name="dataManager" ref="IGoogleDataManager"/>
+    <constructor-arg name="redisDataManager" ref="IRedisDataManager"/>
+    <property name="IsClearDatabaseRequired" value="true" />
+    <property name="IsFeedSavingEnabled" value="false" />
+  </object>
 </objects>

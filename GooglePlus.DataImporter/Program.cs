@@ -2,6 +2,7 @@
 using System;
 using Spring.Context.Support;
 using GooglePlus.Data;
+using System.Configuration;
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
 
 namespace GooglePlus.DataImporter
@@ -26,8 +27,9 @@ namespace GooglePlus.DataImporter
                 return;
             }
 
+            var userIds = ConfigurationManager.AppSettings["userIds"];
 
-            importer.ImportData();
+            importer.ImportData(userIds.Split(','));
 
             log.Debug("Main END");
 

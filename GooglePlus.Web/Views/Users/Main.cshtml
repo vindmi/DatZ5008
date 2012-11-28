@@ -4,47 +4,25 @@
     ViewBag.Title = "User profile";
 }
 
-@using (Html.BeginForm("Update", "Users"))
-{
-    <fieldset>
-        <legend>User profile</legend>
+<div id="user_form">
+    @Html.Partial("_UserForm", Model)
+</div>
 
-        @Html.HiddenFor(u => u.Id)
-        @Html.HiddenFor(u => u.Username)
-
-
-        <div>@Html.LabelFor(u => u.GoogleId)</div>
-        <div>@Html.EditorFor(u => u.GoogleId)</div>
-        
-        <div>@Html.LabelFor(u => u.FirstName)</div>
-        <div>@Html.EditorFor(u => u.FirstName)</div>
-        
-        <div>@Html.LabelFor(u => u.LastName)</div>
-        <div>@Html.EditorFor(u => u.LastName)</div>
-        
-        <div>@Html.LabelFor(u => u.Username)</div>
-        <div>@Html.TextBoxFor(u => u.Username, new { disabled = "disabled" })</div>
-        
-        <div>@Html.LabelFor(u => u.BirthDay)</div>
-        <div>@Html.EditorFor(u => u.BirthDay)</div>
-        
-        <div>@Html.LabelFor(u => u.Education)</div>
-        <div>@Html.EditorFor(u => u.Education)</div>
-        
-        <div>@Html.LabelFor(u => u.Location)</div>
-        <div>@Html.EditorFor(u => u.Location)</div>
-        <br />
-        <input type="submit" value="Save changes"/>
-    </fieldset>  
-}
-@using (Html.BeginForm("Import", "Users"))
-{
-    if (!string.IsNullOrEmpty(Model.GoogleId))
-    {
-        <fieldset>
-            <input type="submit" value="Sync Google+"/>
-        </fieldset> 
-    }
-}
+<div id="ajax_loader" style="display: none;"></div>
+<input id="btnLoadData" type="submit" value="Import data from Google+"/>
 <hr />
 <div id="user_feeds">User feeds are going to appear there...</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/UserDataImporter")
+}
+
+@section ScriptsOnReady {
+    new window.UserDataImporter({
+        btnLoad: '#btnLoadData',
+        targetContainer: '#user_form',
+        txtGoogleId: '#GoogleId',
+        loadingIndicator: '#ajax_loader',
+        userId: @Model.Id
+    });
+}

@@ -163,12 +163,14 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\ajax-loader.gif" />
     <Content Include="Scripts\jquery-1.8.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-ui-1.9.0.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\UserDataImporter.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -183,7 +185,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -207,6 +208,10 @@
     <ProjectReference Include="..\GooglePlus.ApiClient\GooglePlus.ApiClient.csproj">
       <Project>{A364BC56-4A85-4BE4-8974-5124B4CAEE10}</Project>
       <Name>GooglePlus.ApiClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GooglePlus.DataImporter\GooglePlus.DataImporter.csproj">
+      <Project>{AD9478F1-E726-43D1-BB93-3E7621B262AC}</Project>
+      <Name>GooglePlus.DataImporter</Name>
     </ProjectReference>
     <ProjectReference Include="..\GooglePlus.Data\GooglePlus.Data.csproj">
       <Project>{90BB3D40-B80A-4389-A13C-D5335168A8F2}</Project>
@@ -245,6 +250,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Activities\CreateShare.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Users\_UserForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Activities\CreatePhoto.cshtml" />
