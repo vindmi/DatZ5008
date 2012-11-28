@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using GooglePlus.ApiClient.Contract;
 using GooglePlus.Data.Managers;
 using log4net;
-using GooglePlus.DataImporter.Contract;
 using GooglePlus.DataImporter.Converters;
 using GooglePlus.Data.Model;
 
@@ -17,7 +16,6 @@ namespace GooglePlus.DataImporter
         private readonly IGooglePlusActivitiesProvider activitiesProvider;
         private readonly GoogleDataManager dataManager;
         private readonly RedisDataManager redisDataManager;
-        private readonly IUserIdStore userIdStore;
 
         private readonly UserConverter userConverter;
         private readonly ActivityConverter activityConverter;
@@ -29,14 +27,12 @@ namespace GooglePlus.DataImporter
             IGooglePlusPeopleProvider peopleProvider,
             IGooglePlusActivitiesProvider activitiesProvider,
             GoogleDataManager dataManager,
-            RedisDataManager redisDataManager,
-            IUserIdStore userIdStore)
+            RedisDataManager redisDataManager)
         {
             this.peopleProvider = peopleProvider;
             this.activitiesProvider = activitiesProvider;
             this.dataManager = dataManager;
             this.redisDataManager = redisDataManager;
-            this.userIdStore = userIdStore;
 
             userConverter = new UserConverter();
             activityConverter = new ActivityConverter();
@@ -47,8 +43,8 @@ namespace GooglePlus.DataImporter
             dataManager.DeleteActivities();
             dataManager.DeleteUsers();
         }
-        
-        public void ImportData()
+
+        public void ImportData(string[] users)
         {
             log.Debug("Load from GooglePlus started");
 
@@ -56,8 +52,6 @@ namespace GooglePlus.DataImporter
             {
                 ClearDatabase();
             }
-
-            var users = userIdStore.UserIds.Split(',');
 
             foreach (string userId in users)
             {
