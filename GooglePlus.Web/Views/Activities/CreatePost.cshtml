@@ -1,0 +1,36 @@
+﻿@model GooglePlus.Data.Model.Post
+
+@{
+    ViewBag.Title = "CreatePost";
+}
+
+<h2>Create new post</h2>
+
+@using (Html.BeginForm("CreatePost", "Activities"))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Post</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Text)
+            @Html.ValidationMessageFor(model => model.Text)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Posts")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

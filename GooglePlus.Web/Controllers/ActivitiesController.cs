@@ -83,13 +83,46 @@ namespace GooglePlus.Web.Controllers
         [HttpPost]
         public ActionResult CreateShare(Share share)
         {
-            var currentUserId = Membership.GetUserId(User.Identity.Name);
-
-            share.Author = DataAdapter.GetUserById(currentUserId);
-            share.Created = DateTime.Now;
-            DataAdapter.SaveActivity(share);
+            var currentUserId = SaveActivity(share);
 
             return RedirectToAction("Shares", currentUserId);
+        }
+
+        public ActionResult CreatePhoto()
+        {
+            return View("CreatePhoto");
+        }
+
+        [HttpPost]
+        public ActionResult CreatePhoto(Photo photo)
+        {
+            var currentUserId = SaveActivity(photo);
+
+            return RedirectToAction("Photos", currentUserId);
+        }
+
+        public ActionResult CreatePost()
+        {
+            return View("CreatePost");
+        }
+
+        [HttpPost]
+        public ActionResult CreatePost(Post post)
+        {
+            var currentUserId = SaveActivity(post);
+
+            return RedirectToAction("Posts", currentUserId);
+        }
+
+        private int SaveActivity(Activity activity)
+        {
+            var currentUserId = Membership.GetUserId(User.Identity.Name);
+
+            activity.Author = DataAdapter.GetUserById(currentUserId);
+            activity.Created = DateTime.Now;
+            DataAdapter.SaveActivity(activity);
+
+            return currentUserId;
         }
     }
 }
