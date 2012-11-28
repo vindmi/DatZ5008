@@ -3,6 +3,7 @@ using GooglePlus.Data.Contract;
 using GooglePlus.Web.Classes;
 using GooglePlus.Data.Model;
 using System;
+using GooglePlus.DataImporter;
 
 namespace GooglePlus.Web.Controllers
 {
@@ -121,6 +122,10 @@ namespace GooglePlus.Web.Controllers
             activity.Author = DataAdapter.GetUserById(currentUserId);
             activity.Created = DateTime.Now;
             DataAdapter.SaveActivity(activity);
+
+            //save to Redis
+            var importer = (UserImportDataProcessor)SpringContext.Resolve("IUserImportDataProcessor");
+            importer.AddRedisFeed(activity);
 
             return currentUserId;
         }

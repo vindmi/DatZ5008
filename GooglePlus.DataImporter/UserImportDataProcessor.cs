@@ -149,11 +149,11 @@ namespace GooglePlus.DataImporter
 
             foreach (Activity ac in activities)
             {
-                AddFeed(ac);
+                AddRedisFeed(ac);
             }
         }
 
-        private void AddFeed(Activity activity)
+        public void AddRedisFeed(Activity activity)
         {
             FeedType type;
 
