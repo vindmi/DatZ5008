@@ -39,6 +39,11 @@
         <footer>
         </footer>
         @Scripts.Render("~/bundles/jquery")
+        <script type="text/javascript">
+            $(document).ready(function () {
+                @RenderSection("ScriptsOnReady", required: false)
+            });
+        </script>
         @RenderSection("scripts", required: false)
     </body>
 </html>

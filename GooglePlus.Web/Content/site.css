@@ -102,3 +102,9 @@ a:hover { color: #209920; }
 #posts table td {
 	padding: 10px;
 }
+
+#ajax_loader {
+    background-image: url('../Images/ajax-loader.gif');
+    height: 19px;
+    width: 220px;
+}

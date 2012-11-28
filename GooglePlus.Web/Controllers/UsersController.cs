@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using GooglePlus.Data.Contract;
 using GooglePlus.Data.Model;
+using GooglePlus.DataImporter;
 using GooglePlus.Web.Classes;
 using System;
 using Spring.Context.Support;
@@ -54,12 +55,16 @@ namespace GooglePlus.Web.Controllers
             return RedirectToAction("Main");
         }
 
-        [HttpPost]
-        public ActionResult Import(User user)
+        [HttpGet]
+        public ActionResult GetUserForm(string googleId, int userId)
         {
-            throw new NotImplementedException();
+            var importer = (UserImportDataProcessor)SpringContext.Resolve("IUserImportDataProcessor");
 
-            return RedirectToAction("Main");
-        }
+            importer.ImportData(new[] { googleId });
+
+            var user = DataAdapter.GetUserByGoogleId(googleId);
+
+            return PartialView("_UserForm", user ?? DataAdapter.GetUserById(userId));      
+        }       
     }
 }
