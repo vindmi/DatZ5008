@@ -1,0 +1,25 @@
+﻿@model IEnumerable<GooglePlus.Data.Model.Feed>
+
+<p>These are last @Html.ViewBag.FeedMaxCount user Feeds</p>
+<table class="activity_table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReferenceId)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReferenceId)
+        </td>
+    </tr>
+}
+
+</table>

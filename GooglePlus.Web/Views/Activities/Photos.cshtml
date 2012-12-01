@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "CreatePhoto")
 </p>
-<table>
+<table class="activity_table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Src)
@@ -26,19 +26,18 @@
         <th>
             @Html.DisplayNameFor(model => model.googleId)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Src)
+            <img src="@item.Src" alt="photo" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Comment)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Url)
+            <a href="@item.Url">Link to Google+</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Created)

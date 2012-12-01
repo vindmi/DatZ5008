@@ -89,7 +89,7 @@ a:hover { color: #209920; }
 }
 
 #user_main_menu td:hover {
-	background-color: #FFF60C;
+	background-color: #CCFFFF;
 }
 
 .user_profile {
@@ -99,8 +99,14 @@ a:hover { color: #209920; }
 	padding: 10px;
 }
 
-#posts table td {
+.activity_table 
+{
+	border-collapse:collapse;
+}
+
+.activity_table td, th {
 	padding: 10px;
+	border: 1px solid;
 }
 
 #ajax_loader {

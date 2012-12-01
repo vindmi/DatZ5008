@@ -68,7 +68,7 @@ namespace GooglePlus.DataImporter
 
                     if (IsFeedSavingEnabled)
                     {
-                        ImportFeeds(userId);
+                        ImportFeeds(user.Id);
                     }
                 }
                 catch (Exception ex)
@@ -134,7 +134,7 @@ namespace GooglePlus.DataImporter
             log.Debug("Activities load from GooglePlus finished");
         }
 
-        private void ImportFeeds(string userId)
+        private void ImportFeeds(int userId)
         {
             if (IsClearDatabaseRequired)
             {
@@ -182,7 +182,7 @@ namespace GooglePlus.DataImporter
                 CreatedDate = activity.Created
             };
 
-            redisDataManager.AddFeed(feed, activity.Author.GoogleId);
+            redisDataManager.AddFeed(feed, activity.Author.Id);
         }
     }
 }

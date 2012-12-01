@@ -17,21 +17,27 @@ namespace GooglePlus.Data.Managers
             this.redisClient = redisClient;
         }
 
-        public void AddFeed(Feed feed, string userId)
+        public void AddFeed(Feed feed, int userId)
         {
-            var list = redisClient.As<Feed>().Lists[redisKey + userId];
-            list.Add(feed);
+            log.Info("Feed added for user: " + userId.ToString());
+
+            redisClient.As<Feed>().Lists[redisKey + userId.ToString()].Add(feed);
         }
 
-        public List<Feed> GetFeeds(string userId)
+        public List<Feed> GetFeeds(int userId)
         {
-            var list = redisClient.As<Feed>().Lists[redisKey + userId];
+            log.Info("Get Feeds for user: " + userId.ToString());
+
+            var list = redisClient.As<Feed>().Lists[redisKey + userId.ToString()];
+
             return list.GetAll();
         }
 
-        public void ClearData(string userId)
+        public void ClearData(int userId)
         {
-            var list = redisClient.As<Feed>().Lists[redisKey + userId];
+            log.Info("Clear all Feeds for user: " + userId.ToString());
+            
+            var list = redisClient.As<Feed>().Lists[redisKey + userId.ToString()];
             list.RemoveAll();
         }
     }

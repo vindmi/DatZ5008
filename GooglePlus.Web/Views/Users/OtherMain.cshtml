@@ -69,3 +69,6 @@
 <p>
     @Html.ActionLink("Back to List", "List")
 </p>
+<div id="feed_list">
+    @{Html.RenderAction("GetUserFeedList", new { userId = Model.Id });}
+</div>

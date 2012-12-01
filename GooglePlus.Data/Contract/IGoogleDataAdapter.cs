@@ -17,7 +17,7 @@ namespace GooglePlus.Data.Contract
 
         Activity GetActivityByGoogleId(string googleId);
 
-        List<Activity> GetUserActivities(string userId);
+        List<Activity> GetUserActivities(int userId);
 
         List<User> GetUsers();
 

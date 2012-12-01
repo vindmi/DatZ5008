@@ -50,6 +50,9 @@ namespace GooglePlus.Data
                 existingUser.GoogleId = data.GoogleId;
                 existingUser.LastName = data.LastName;
                 existingUser.Username = data.Username;
+                existingUser.Education = data.Education;
+                existingUser.BirthDay = data.BirthDay;
+                existingUser.Location = data.Location;
             }
             else
             {
@@ -91,11 +94,11 @@ namespace GooglePlus.Data
             return db.Activities.FirstOrDefault(a => a.googleId == googleId);
         }
 
-        public List<Activity> GetUserActivities(string userId)
+        public List<Activity> GetUserActivities(int userId)
         {
             return db.Activities
                 .Include("Author")
-                .Where(a => a.Author.GoogleId == userId)
+                .Where(a => a.Author.Id == userId)
                 .ToList();
         }
 

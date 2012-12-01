@@ -11,7 +11,9 @@
 <div id="ajax_loader" style="display: none;"></div>
 <input id="btnLoadData" type="submit" value="Import data from Google+"/>
 <hr />
-<div id="user_feeds">User feeds are going to appear there...</div>
+<div id="feed_list">
+    @{Html.RenderAction("GetUserFeedList", new { userId = Model.Id });}
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/UserDataImporter")

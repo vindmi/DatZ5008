@@ -9,7 +9,7 @@
 <p>
    @Html.ActionLink("Create New", "CreatePost")
 </p>
-<table>
+<table class="activity_table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Text)
@@ -20,7 +20,6 @@
         <th>
             @Html.DisplayNameFor(model => model.googleId)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {

@@ -57,7 +57,7 @@ namespace GooglePlus.Data.Managers
             }
         }
 
-        public List<Activity> GetActivities(string userId)
+        public List<Activity> GetActivities(int userId)
         {
             log.Info("Called GetActivities: " + userId);
 
