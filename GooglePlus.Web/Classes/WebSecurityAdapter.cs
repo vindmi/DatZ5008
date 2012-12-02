@@ -1,3 +1,4 @@
+using System.Security.Principal;
 using WebMatrix.WebData;
 
 namespace GooglePlus.Web.Classes
@@ -17,6 +18,11 @@ namespace GooglePlus.Web.Classes
         public int GetUserId(string userName)
         {
             return WebSecurity.GetUserId(userName);
+        }
+
+        public int GetUserId(IPrincipal user)
+        {
+            return GetUserId(user.Identity.Name);
         }
 
         public void CreateUserAndAccount(string userName, string password, object additionalProperties)

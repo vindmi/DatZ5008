@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using GooglePlus.ApiClient.Contract;
 using GooglePlus.Data.Managers;
 using log4net;
-using GooglePlus.DataImporter.Converters;
 using GooglePlus.Data.Model;
 
 namespace GooglePlus.DataImporter
@@ -17,8 +17,8 @@ namespace GooglePlus.DataImporter
         private readonly GoogleDataManager dataManager;
         private readonly RedisDataManager redisDataManager;
 
-        private readonly UserConverter userConverter;
-        private readonly ActivityConverter activityConverter;
+        private readonly UserMapper userMapper;
+        private readonly ActivityMapper activityMapper;
 
         public bool IsClearDatabaseRequired { get; set; }
         public bool IsFeedSavingEnabled { get; set; }
@@ -34,14 +34,39 @@ namespace GooglePlus.DataImporter
             this.dataManager = dataManager;
             this.redisDataManager = redisDataManager;
 
-            userConverter = new UserConverter();
-            activityConverter = new ActivityConverter();
+            userMapper = new UserMapper();
+            activityMapper = new ActivityMapper();
         }
 
-        private void ClearDatabase()
+        public void ImportData(string googleId, User user = null)
         {
-            dataManager.DeleteActivities();
-            dataManager.DeleteUsers();
+            try
+            {
+                //get user data from google
+                var googleUser = peopleProvider.GetProfile(googleId);
+
+                if (user == null)
+                {
+                    user = userMapper.CreateFrom(googleUser);
+                }
+                else
+                {
+                    userMapper.Map(googleUser, user);
+                }
+
+                dataManager.SaveUser(user);
+
+                LoadActivities(googleId, user);
+
+                if (IsFeedSavingEnabled)
+                {
+                    ImportFeeds(user.Id);
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message, ex);
+            }
         }
 
         public void ImportData(string[] users)
@@ -50,31 +75,12 @@ namespace GooglePlus.DataImporter
 
             if (IsClearDatabaseRequired)
             {
-                ClearDatabase();
+                dataManager.DeleteImportedData();
             }
 
             foreach (string userId in users)
             {
-                try
-                {
-                    //get user data from google
-                    var googleUser = peopleProvider.GetProfile(userId);
-                    //convert user
-                    User user = userConverter.Convert(googleUser);
-                    //save user on database
-                    dataManager.SaveUser(user);
-                    //load user activities
-                    LoadActivities(userId, user);
-
-                    if (IsFeedSavingEnabled)
-                    {
-                        ImportFeeds(user.Id);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    log.Error(ex.Message, ex);
-                }
+                ImportData(userId);
             }
 
             log.Debug("Load from GooglePlus finished");
@@ -86,27 +92,26 @@ namespace GooglePlus.DataImporter
 
             var activities = activitiesProvider.GetActivities(userId);
 
+            var existingActivities = dataManager.GetActivities(user.Id);
+
             foreach (var item in activities.Items)
             {
-                if (item.GoogleObject == null)
+                //if google activity already added continue on next activity
+                if (item.GoogleObject == null
+                    || existingActivities.Any(a => String.Equals(a.googleId, item.Id)))
                 {
                     continue;
                 }
-
-                //if google activity already added continue on next activity
-                Activity googleActivity = dataManager.GetActivityByGoogleId(item.Id);
-                if (googleActivity != null)
-                    continue;
 
                 Activity activity;
 
                 switch (item.Verb)
                 {
                     case "post":
-                        activity = activityConverter.ConvertToPost(item, item.GoogleObject);
+                        activity = activityMapper.CreatePost(item, item.GoogleObject);
                         break;
                     case "share":
-                        activity = activityConverter.ConvertToShare(item, item.GoogleObject);
+                        activity = activityMapper.CreateShare(item, item.GoogleObject);
                         break;
                     default:
                         continue;
@@ -123,7 +128,7 @@ namespace GooglePlus.DataImporter
                     {
                         if (attachment.ObjectType.Equals("photo"))
                         {
-                            var photo = activityConverter.ConvertToPhoto(item, attachment);
+                            var photo = activityMapper.CreatePhoto(item, attachment);
                             photo.Author = user;
                             dataManager.SaveActivity(photo);
                         }

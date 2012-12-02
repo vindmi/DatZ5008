@@ -47,7 +47,7 @@
                 userId: self.userId
             });
 
-            self.targetContainer.load('GetUserForm?' + params, function () {
+            self.targetContainer.load('ImportUserData?' + params, function () {
                 self.loadingIndicator.hide();
                 self.btnLoad.removeAttr('disabled');
             });

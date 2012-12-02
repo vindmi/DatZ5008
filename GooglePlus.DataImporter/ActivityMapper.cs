@@ -2,11 +2,11 @@
 using GooglePlus.ApiClient.Classes;
 using GooglePlus.Data.Model;
 
-namespace GooglePlus.DataImporter.Converters
+namespace GooglePlus.DataImporter
 {
-    public class ActivityConverter
+    public class ActivityMapper
     {
-        public T ConvertActivity<T>(GooglePlusActivity activity)
+        public T CreateFrom<T>(GooglePlusActivity activity)
             where T: Activity, new()
         {
             DateTime created;
@@ -17,9 +17,9 @@ namespace GooglePlus.DataImporter.Converters
             return act;
         }
 
-        public Photo ConvertToPhoto(GooglePlusActivity activity, GooglePlusAttachment attachment)
+        public Photo CreatePhoto(GooglePlusActivity activity, GooglePlusAttachment attachment)
         {
-            Photo p = ConvertActivity<Photo>(activity);
+            Photo p = CreateFrom<Photo>(activity);
 
             p.Src = attachment.FullImage.Url;
             p.Comment = attachment.Content;
@@ -28,18 +28,18 @@ namespace GooglePlus.DataImporter.Converters
             return p;
         }     
 
-        public Share ConvertToShare(GooglePlusActivity activity, GooglePlusObject gObject)
+        public Share CreateShare(GooglePlusActivity activity, GooglePlusObject gObject)
         {
-            Share share = ConvertActivity<Share>(activity);
+            Share share = CreateFrom<Share>(activity);
 
             share.Comment = gObject.Content;
 
             return share;
         }
 
-        public Post ConvertToPost(GooglePlusActivity activity, GooglePlusObject gObject)
+        public Post CreatePost(GooglePlusActivity activity, GooglePlusObject gObject)
         {
-            Post post = ConvertActivity<Post>(activity);
+            Post post = CreateFrom<Post>(activity);
 
             post.Text = gObject.Content;
 
