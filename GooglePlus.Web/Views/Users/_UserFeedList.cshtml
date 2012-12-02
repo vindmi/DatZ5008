@@ -9,6 +9,9 @@
         <th>
             @Html.DisplayNameFor(model => model.ReferenceId)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -18,6 +21,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ReferenceId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
         </td>
     </tr>
 }

@@ -122,3 +122,21 @@ img.activity_photo {
 #GoogleId {
     width: 150px;
 }
+
+#other_activities 
+{
+	padding-left: 20px;
+	vertical-align: top;
+	float:right;
+}
+
+#feed_list
+{
+	vertical-align: top;
+	float:left;
+}
+
+#other_activities .activity_photo
+{
+	width: 100%;
+}

@@ -11,8 +11,13 @@
 <div id="ajax_loader" style="display: none;"></div>
 <input id="btnLoadData" type="submit" value="Import data from Google+"/>
 <hr />
+
+
 <div id="feed_list">
-    @{Html.RenderAction("GetUserFeedList", new { userId = Model.Id });}
+            @{Html.RenderAction("GetUserFeedList", new { userId = Model.Id });}
+</div>
+<div id="other_activities">
+            @{Html.RenderAction("OtherUserActivitiesList", new { userId = Model.Id });}
 </div>
 
 @section Scripts {

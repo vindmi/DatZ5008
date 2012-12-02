@@ -1,0 +1,41 @@
+﻿@model IEnumerable<GooglePlus.Data.Model.Activity>
+
+<h3>Friends activities</h3>
+<table>
+    
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <span style="font-weight: bold">@Html.DisplayFor(modelItem => item.Author.FullName)</span>
+        </td>
+        <td>
+            <span style="font-style: italic">@Html.DisplayFor(modelItem => item.Created)</span>
+        </td>
+        
+    </tr>
+    <tr>
+        <td colspan="2">
+            @{
+                if (item is GooglePlus.Data.Model.Post)
+                {
+                    var tmp = (GooglePlus.Data.Model.Post)item;
+                    @Html.Raw(tmp.Text)
+                }
+                if (item is GooglePlus.Data.Model.Share)
+                {
+                    var tmp = (GooglePlus.Data.Model.Share)item;
+                    @Html.Raw(tmp.Content)
+                }
+                if (item is GooglePlus.Data.Model.Photo)
+                {
+                    var tmp = (GooglePlus.Data.Model.Photo)item;
+                    <img src="@tmp.Src" alt="photo" class="activity_photo" /><br />
+                    @Html.Raw(tmp.Comment)
+                }
+            }
+            <hr />
+        </td>
+    </tr>
+}
+</table>

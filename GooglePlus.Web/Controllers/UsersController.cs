@@ -153,6 +153,28 @@ namespace GooglePlus.Web.Controllers
             return RedirectToAction("List");
         }
 
+       
+        [ChildActionOnly]
+        public ActionResult OtherUserActivitiesList(int userId)
+        {
+            var maxCount = WebConfigurationManager.AppSettings["MaxActivityCount"];
+            int max = int.Parse(maxCount);
+
+            var subs = GetUserSubscriptions(userId);
+
+            List<Activity> activities = new List<Activity>();
+            foreach(int id in subs)
+            {
+                var actions = DataAdapter.GetUserActivities(id);
+                activities.AddRange(actions);
+            }
+            var result = activities
+                .OrderByDescending(ac => ac.Created)
+                .Take(max);
+
+            return PartialView("_OtherUserActivitiesList", result);  
+        }
+
         private List<int> GetUserSubscriptions(int userId)
         {
             try
