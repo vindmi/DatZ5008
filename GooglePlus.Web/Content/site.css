@@ -109,8 +109,16 @@ a:hover { color: #209920; }
 	border: 1px solid;
 }
 
+img.activity_photo {
+    width: 100%;
+}
+
 #ajax_loader {
     background-image: url('../Images/ajax-loader.gif');
     height: 19px;
     width: 220px;
+}
+
+#GoogleId {
+    width: 150px;
 }

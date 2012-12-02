@@ -14,21 +14,16 @@ namespace GooglePlus.Data
             db = new GooglePlus();
         }
 
-        public void DeleteUsers()
+        public void DeleteUsers(IEnumerable<User> users)
         {
-            foreach (var usr in db.Users)
+            foreach (var user in users)
             {
-                db.Users.Remove(usr);
-            }
+                foreach (var activity in GetActivities<Activity>(user.Id))
+                {
+                    db.Activities.Remove(activity);
+                }
 
-            db.SaveChanges();
-        }
-
-        public void DeleteActivities()
-        {
-            foreach (var ac in db.Activities)
-            {
-                db.Activities.Remove(ac);
+                db.Users.Remove(user);
             }
 
             db.SaveChanges();
@@ -37,11 +32,6 @@ namespace GooglePlus.Data
         public void SaveUser(User data)
         {
             User existingUser = GetUserById(data.Id);
-
-            if (existingUser == null)
-            {
-                existingUser = GetUserByGoogleId(data.GoogleId);
-            }
 
             if (existingUser != null)
             {

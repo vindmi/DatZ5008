@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using log4net;
 using GooglePlus.Data.Model;
 using GooglePlus.Data.Contract;
@@ -35,6 +36,11 @@ namespace GooglePlus.Data.Managers
                 log.Error(ex.Message, ex);
                 throw;
             }
+        }
+
+        public User GetUser(string googleId)
+        {
+            return dataAdapter.GetUserByGoogleId(googleId);
         }
 
         public void SaveActivity(Activity activity)
@@ -77,14 +83,9 @@ namespace GooglePlus.Data.Managers
             return dataAdapter.GetActivityByGoogleId(googleId);
         }
 
-        public void DeleteUsers()
+        public void DeleteImportedData()
         {
-            dataAdapter.DeleteUsers();
-        }
-
-        public void DeleteActivities()
-        {
-            dataAdapter.DeleteActivities();
+            dataAdapter.DeleteUsers(dataAdapter.GetUsers().Where(u => String.IsNullOrEmpty(u.Username)));
         }
     }
 }

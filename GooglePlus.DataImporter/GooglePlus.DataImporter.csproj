@@ -75,10 +75,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\ActivityConverter.cs" />
+    <Compile Include="ActivityMapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Converters\UserConverter.cs" />
+    <Compile Include="UserMapper.cs" />
     <Compile Include="UserImportDataProcessor.cs" />
   </ItemGroup>
   <ItemGroup>

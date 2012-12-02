@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Net.Sockets;
+using System.Web.Mvc;
 using GooglePlus.Data.Contract;
 using GooglePlus.Data.Managers;
 using GooglePlus.Data.Model;
@@ -23,7 +24,7 @@ namespace GooglePlus.Web.Controllers
         [HttpGet]
         public ActionResult Main(int? id)
         {
-            var currentUserId = Membership.GetUserId(User.Identity.Name);
+            var currentUserId = Membership.GetUserId(User);
 
             if (!id.HasValue)
             {
@@ -43,7 +44,7 @@ namespace GooglePlus.Web.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            var currentUserId = Membership.GetUserId(User.Identity.Name);
+            var currentUserId = Membership.GetUserId(User);
             var users = from u in DataAdapter.GetUsers()
                     where u.Id != currentUserId
                     orderby u.FirstName ascending
@@ -82,29 +83,38 @@ namespace GooglePlus.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetUserForm(string googleId, int userId)
+        public ActionResult ImportUserData(string googleId, int userId)
         {
             var importer = (UserImportDataProcessor)SpringContext.Resolve("IUserImportDataProcessor");
 
-            importer.ImportData(new[] { googleId });
+            var currentUser = DataAdapter.GetUserById(userId);
 
-            var user = DataAdapter.GetUserByGoogleId(googleId);
+            importer.ImportData(googleId, currentUser);
 
-            return PartialView("_UserForm", user ?? DataAdapter.GetUserById(userId));      
+            return PartialView("_UserForm", currentUser);      
         }
 
         [ChildActionOnly]
         public ActionResult GetUserFeedList(int userId)
         {
-            ViewBag.FeedMaxCount = WebConfigurationManager.AppSettings["MaxUserFeedsInList"].ToString();
+            ViewBag.FeedMaxCount = WebConfigurationManager.AppSettings["MaxUserFeedsInList"];
             int max = int.Parse(ViewBag.FeedMaxCount);
 
             RedisManager = (RedisDataManager)SpringContext.Resolve("IRedisDataManager");
 
-            var feeds = RedisManager
-                .GetFeeds(userId)
-                .OrderByDescending(f => f.CreatedDate)
-                .Take(max);
+            IEnumerable<Feed> feeds;
+
+            try
+            {
+                feeds = RedisManager
+                    .GetFeeds(userId)
+                    .OrderByDescending(f => f.CreatedDate)
+                    .Take(max);
+            }
+            catch (SocketException)
+            {
+                feeds = Enumerable.Empty<Feed>();
+            }
 
             return PartialView("_UserFeedList", feeds);   
         }

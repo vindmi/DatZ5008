@@ -27,8 +27,6 @@ namespace GooglePlus.Data.Contract
 
         List<Share> GetShares(int userId);
 
-        void DeleteUsers();
-
-        void DeleteActivities();
+        void DeleteUsers(IEnumerable<User> users);
     }
 }

@@ -15,7 +15,7 @@ namespace GooglePlus.Web.Controllers
 
         public ActionResult Posts(int? id)
         {
-            var currentUserId = Membership.GetUserId(User.Identity.Name);
+            var currentUserId = Membership.GetUserId(User);
 
             if (!id.HasValue)
             {
@@ -36,7 +36,7 @@ namespace GooglePlus.Web.Controllers
 
         public ActionResult Photos(int? id)
         {
-            var currentUserId = Membership.GetUserId(User.Identity.Name);
+            var currentUserId = Membership.GetUserId(User);
 
             if (!id.HasValue)
             {
@@ -57,7 +57,7 @@ namespace GooglePlus.Web.Controllers
 
         public ActionResult Shares(int? id)
         {
-            var currentUserId = Membership.GetUserId(User.Identity.Name);
+            var currentUserId = Membership.GetUserId(User);
 
             if (!id.HasValue)
             {
@@ -117,7 +117,7 @@ namespace GooglePlus.Web.Controllers
 
         private int SaveActivity(Activity activity)
         {
-            var currentUserId = Membership.GetUserId(User.Identity.Name);
+            var currentUserId = Membership.GetUserId(User);
 
             activity.Author = DataAdapter.GetUserById(currentUserId);
             activity.Created = DateTime.Now;
