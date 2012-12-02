@@ -9,6 +9,7 @@ using Spring.Context.Support;
 using System.Linq;
 using System.Web.Configuration;
 using System.Collections.Generic;
+using System.Net.Sockets;
 
 namespace GooglePlus.Web.Controllers
 {
@@ -48,6 +49,27 @@ namespace GooglePlus.Web.Controllers
                     orderby u.FirstName ascending
                     select u;
 
+            ViewBag.subscribedToUsers = GetUserSubscriptions(currentUserId);
+
+            return View(users);
+        }
+
+        [HttpGet]
+        public ActionResult Subscriptions(int? id)
+        {
+            var currentUserId = Membership.GetUserId(User.Identity.Name);
+            if (!id.HasValue)
+            {
+                id = currentUserId;
+            }
+            
+            var userSubscriptions = GetUserSubscriptions(id.Value);
+            var users = from u in DataAdapter.GetUsers()
+                        where userSubscriptions.Contains(u.Id)
+                        orderby u.FirstName ascending
+                        select u;
+
+            ViewBag.ProfileId = id.Value;
             return View(users);
         }
 
@@ -85,6 +107,55 @@ namespace GooglePlus.Web.Controllers
                 .Take(max);
 
             return PartialView("_UserFeedList", feeds);   
+        }
+
+        [HttpGet]
+        public ActionResult Subscribe(int ToUserId)
+        {
+            var currentUserId = Membership.GetUserId(User.Identity.Name);
+            RedisManager = (RedisDataManager)SpringContext.Resolve("IRedisDataManager");
+
+            try
+            {
+                RedisManager.AddSubscription(ToUserId, currentUserId);
+            }
+            catch (SocketException)
+            {
+                //log exception
+            }
+            return RedirectToAction("List");
+        }
+
+        [HttpGet]
+        public ActionResult Unsubscribe(int ToUserId)
+        {
+            var currentUserId = Membership.GetUserId(User.Identity.Name);
+            RedisManager = (RedisDataManager)SpringContext.Resolve("IRedisDataManager");
+
+            try
+            {
+                RedisManager.DeleteSubscription(ToUserId, currentUserId);
+            }
+            catch (SocketException)
+            {
+                //log exception
+            }
+            return RedirectToAction("List");
+        }
+
+        private List<int> GetUserSubscriptions(int userId)
+        {
+            try
+            {
+                RedisManager = (RedisDataManager)SpringContext.Resolve("IRedisDataManager");
+
+                return RedisManager.GetSubscriptions(userId);
+            }
+            catch (SocketException)
+            {
+                //log exception
+                return new List<int>();
+            }
         }
     }
 }

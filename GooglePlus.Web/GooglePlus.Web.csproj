@@ -263,6 +263,9 @@
   <ItemGroup>
     <Content Include="Views\Users\_UserFeedList.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Users\Subscriptions.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

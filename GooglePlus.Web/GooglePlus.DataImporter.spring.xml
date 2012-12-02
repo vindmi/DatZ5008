@@ -37,6 +37,6 @@
     <constructor-arg name="dataManager" ref="IGoogleDataManager"/>
     <constructor-arg name="redisDataManager" ref="IRedisDataManager"/>
     <property name="IsClearDatabaseRequired" value="false" />
-    <property name="IsFeedSavingEnabled" value="false" />
+    <property name="IsFeedSavingEnabled" value="true" />
   </object>
 </objects>
