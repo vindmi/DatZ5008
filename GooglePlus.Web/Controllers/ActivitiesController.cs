@@ -4,7 +4,6 @@ using GooglePlus.Web.Classes;
 using GooglePlus.Data.Model;
 using System;
 using GooglePlus.DataImporter;
-using System.Web.Configuration;
 
 namespace GooglePlus.Web.Controllers
 {

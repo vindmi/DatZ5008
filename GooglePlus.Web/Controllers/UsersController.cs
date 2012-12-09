@@ -1,16 +1,13 @@
-﻿using System.Net.Sockets;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using GooglePlus.Data.Contract;
 using GooglePlus.Data.Managers;
 using GooglePlus.Data.Model;
 using GooglePlus.DataImporter;
 using GooglePlus.Web.Classes;
 using System;
-using Spring.Context.Support;
 using System.Linq;
 using System.Web.Configuration;
 using System.Collections.Generic;
-using System.Net.Sockets;
 
 namespace GooglePlus.Web.Controllers
 {
@@ -100,8 +97,6 @@ namespace GooglePlus.Web.Controllers
             ViewBag.FeedMaxCount = WebConfigurationManager.AppSettings["MaxUserFeedsInList"];
             int max = int.Parse(ViewBag.FeedMaxCount);
 
-            RedisManager = (RedisDataManager)SpringContext.Resolve("IRedisDataManager");
-
             IEnumerable<Feed> feeds;
 
             try
@@ -120,14 +115,13 @@ namespace GooglePlus.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Subscribe(int ToUserId)
+        public ActionResult Subscribe(int toUserId)
         {
             var currentUserId = Membership.GetUserId(User.Identity.Name);
-            RedisManager = (RedisDataManager)SpringContext.Resolve("IRedisDataManager");
 
             try
             {
-                RedisManager.AddSubscription(ToUserId, currentUserId);
+                RedisManager.AddSubscription(toUserId, currentUserId);
             }
             catch (Exception)
             {
@@ -137,14 +131,13 @@ namespace GooglePlus.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Unsubscribe(int ToUserId)
+        public ActionResult Unsubscribe(int toUserId)
         {
             var currentUserId = Membership.GetUserId(User.Identity.Name);
-            RedisManager = (RedisDataManager)SpringContext.Resolve("IRedisDataManager");
 
             try
             {
-                RedisManager.DeleteSubscription(ToUserId, currentUserId);
+                RedisManager.DeleteSubscription(toUserId, currentUserId);
             }
             catch (Exception)
             {
@@ -179,8 +172,6 @@ namespace GooglePlus.Web.Controllers
         {
             try
             {
-                RedisManager = (RedisDataManager)SpringContext.Resolve("IRedisDataManager");
-
                 return RedisManager.GetSubscriptions(userId);
             }
             catch (Exception)
