@@ -111,7 +111,7 @@ namespace GooglePlus.Web.Controllers
                     .OrderByDescending(f => f.CreatedDate)
                     .Take(max);
             }
-            catch (SocketException)
+            catch (Exception)
             {
                 feeds = Enumerable.Empty<Feed>();
             }
@@ -129,7 +129,7 @@ namespace GooglePlus.Web.Controllers
             {
                 RedisManager.AddSubscription(ToUserId, currentUserId);
             }
-            catch (SocketException)
+            catch (Exception)
             {
                 //log exception
             }
@@ -146,7 +146,7 @@ namespace GooglePlus.Web.Controllers
             {
                 RedisManager.DeleteSubscription(ToUserId, currentUserId);
             }
-            catch (SocketException)
+            catch (Exception)
             {
                 //log exception
             }
@@ -183,7 +183,7 @@ namespace GooglePlus.Web.Controllers
 
                 return RedisManager.GetSubscriptions(userId);
             }
-            catch (SocketException)
+            catch (Exception)
             {
                 //log exception
                 return new List<int>();
