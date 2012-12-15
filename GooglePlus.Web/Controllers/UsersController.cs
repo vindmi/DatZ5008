@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Common.Logging;
 using GooglePlus.Data.Contract;
 using GooglePlus.Data.Managers;
 using GooglePlus.Data.Model;
@@ -14,6 +15,8 @@ namespace GooglePlus.Web.Controllers
     [Authorize]
     public class UsersController : Controller
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(UsersController));
+
         public IMembershipAdapter Membership { get; set; }
         public IGoogleDataAdapter DataAdapter { get; set; }
         public RedisDataManager RedisManager { get; set; }
@@ -76,6 +79,8 @@ namespace GooglePlus.Web.Controllers
         {          
             DataAdapter.SaveUser(user);
 
+            log.Info(String.Format("User '{0}' updated profile", user.FullName));
+
             return RedirectToAction("Main");
         }
 
@@ -87,6 +92,8 @@ namespace GooglePlus.Web.Controllers
             var currentUser = DataAdapter.GetUserById(userId);
 
             importer.ImportData(googleId, currentUser);
+
+            log.Info(String.Format("User '{0}' imported data from Google+", User.Identity.Name));
 
             return PartialView("_UserForm", currentUser);      
         }
@@ -122,10 +129,12 @@ namespace GooglePlus.Web.Controllers
             try
             {
                 RedisManager.AddSubscription(toUserId, currentUserId);
+
+                log.Info(String.Format("User '{0}' subscribed to user's '{1}' feed", User.Identity.Name, toUserId));
             }
             catch (Exception)
             {
-                //log exception
+                log.Error("Subscription to user's feeds failed");
             }
             return RedirectToAction("List");
         }
@@ -138,10 +147,12 @@ namespace GooglePlus.Web.Controllers
             try
             {
                 RedisManager.DeleteSubscription(toUserId, currentUserId);
+
+                log.Info(String.Format("User '{0}' unsubscribed from user's '{1}' feed", User.Identity.Name, toUserId));
             }
             catch (Exception)
             {
-                //log exception
+                log.Error("Unsubscription from user's feeds failed");
             }
             return RedirectToAction("List");
         }
@@ -155,7 +166,7 @@ namespace GooglePlus.Web.Controllers
 
             var subs = GetUserSubscriptions(userId);
 
-            List<Activity> activities = new List<Activity>();
+            var activities = new List<Activity>();
             foreach(int id in subs)
             {
                 var actions = DataAdapter.GetUserActivities(id);
@@ -176,9 +187,10 @@ namespace GooglePlus.Web.Controllers
             }
             catch (Exception)
             {
-                //log exception
-                return new List<int>();
+                log.Error("GetUserSubscriptions failed");
             }
+
+            return Enumerable.Empty<int>().ToList();
         }
     }
 }

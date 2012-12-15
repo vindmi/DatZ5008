@@ -4,6 +4,7 @@ using GooglePlus.Web.Classes;
 using WebMatrix.WebData;
 using System.Web.Optimization;
 using GooglePlus.Data;
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 
 namespace GooglePlus.Web
 {

@@ -22,7 +22,7 @@
         <div>@Html.TextBoxFor(u => u.Username, new { disabled = "disabled" })</div>
         
         <div>@Html.LabelFor(u => u.BirthDay)</div>
-        <div>@Html.EditorFor(u => u.BirthDay)</div>
+        <div>@Html.TextBoxFor(m => m.BirthDay, "{0:yyyy.MM.dd}")</div>
         
         <div>@Html.LabelFor(u => u.Education)</div>
         <div>@Html.EditorFor(u => u.Education)</div>
