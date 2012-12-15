@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Web.Security;
+using Common.Logging;
 using GooglePlus.Web.Models;
 using GooglePlus.Web.Classes;
 
@@ -7,6 +9,8 @@ namespace GooglePlus.Web.Controllers
 {
     public class AccountController : Controller
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(AccountController));
+
         public IMembershipAdapter Membership { get; set; }
 
         public ActionResult Login(string returnUrl)
@@ -21,10 +25,12 @@ namespace GooglePlus.Web.Controllers
         {
             if (ModelState.IsValid && Membership.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
+                log.Info(String.Format("User '{0}' logged in", model.UserName));
                 return RedirectToLocal(returnUrl);
             }
 
-            // If we got this far, something failed, redisplay form
+            log.Warn(String.Format("User '{0}' failed to log in", model.UserName));
+
             ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View(model);
         }
@@ -35,6 +41,8 @@ namespace GooglePlus.Web.Controllers
         public ActionResult LogOff()
         {
             Membership.Logout();
+
+            log.Info(String.Format("User '{0}' logged out", User.Identity.Name));
 
             return RedirectToAction("Index", "Home");
         }
@@ -60,6 +68,8 @@ namespace GooglePlus.Web.Controllers
                     };
                     Membership.CreateUserAndAccount(model.UserName, model.Password, properties);
                     Membership.Login(model.UserName, model.Password);
+
+                    log.Info(String.Format("User '{0}' registered", model.UserName));
 
                     return RedirectToAction("Main", "Users");
                 }

@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Common.Logging;
 using GooglePlus.Data.Contract;
 using GooglePlus.Web.Classes;
 using GooglePlus.Data.Model;
@@ -10,6 +11,8 @@ namespace GooglePlus.Web.Controllers
     [Authorize]
     public class ActivitiesController : Controller
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(ActivitiesController));
+
         public IMembershipAdapter Membership { get; set; }
         public IGoogleDataAdapter DataAdapter { get; set; }
 
@@ -86,6 +89,8 @@ namespace GooglePlus.Web.Controllers
         {
             var currentUserId = SaveActivity(share);
 
+            log.Info(String.Format("User '{0}' added some share", User.Identity.Name));
+
             return RedirectToAction("Shares", currentUserId);
         }
 
@@ -99,6 +104,8 @@ namespace GooglePlus.Web.Controllers
         {
             var currentUserId = SaveActivity(photo);
 
+            log.Info(String.Format("User '{0}' added some photo", User.Identity.Name));
+
             return RedirectToAction("Photos", currentUserId);
         }
 
@@ -111,6 +118,8 @@ namespace GooglePlus.Web.Controllers
         public ActionResult CreatePost(Post post)
         {
             var currentUserId = SaveActivity(post);
+
+            log.Info(String.Format("User '{0}' added some post", User.Identity.Name));
 
             return RedirectToAction("Posts", currentUserId);
         }
@@ -126,6 +135,8 @@ namespace GooglePlus.Web.Controllers
             //save to Redis
             var importer = (UserImportDataProcessor)SpringContext.Resolve("IUserImportDataProcessor");
             importer.AddRedisFeed(activity);
+
+            log.Debug("Activity saved to Redis feed");
 
             return currentUserId;
         }
