@@ -9,6 +9,7 @@
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
 <tr><td><b>Test Suite</b></td></tr>
 <tr><td><a href="register_user_activities.html">register_user_activities</a></td></tr>
+<tr><td><a href="register_user_second.html">register_user_second</a></td></tr>
 <tr><td><a href="login_check_activities.html">login_check_activities</a></td></tr>
 <tr><td><a href="login_check_other_user_activities.html">login_check_other_user_activities</a></td></tr>
 </tbody></table>

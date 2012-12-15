@@ -55,10 +55,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
+    <Content Include="selenium\login_check_activities.html" />
+    <Content Include="selenium\login_check_other_user_activities.html" />
+    <Content Include="selenium\register_user_activities.html" />
+    <Content Include="selenium\register_user_second.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="selenium\news_feed_test_suite" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
